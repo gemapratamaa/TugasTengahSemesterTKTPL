@@ -11,27 +11,19 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.JsonHttpResponseHandler;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
 import java.io.InputStream;
-import java.net.URL;
-
-import cz.msebera.android.httpclient.entity.mime.Header;
 
 public class MainActivity extends AppCompatActivity {
     private TextView myTextViewResult;
@@ -65,15 +57,15 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                Log.i("onclock catbutton", "MASUKKKKKK");
+                Log.i("onclick catbutton", "MASUKKKKKK");
 
-                String catPictureUrl = parseCatJSON();
+                String pictureUrl = parseCatJSON();
 
                 //String catPictureUrl = "https://cdn2.thecatapi.com/images/b1u.jpg";
-                Log.i("[cat button onclick]", catPictureUrl);
+                Log.i("[cat button onclick]", pictureUrl);
                 //imageView.setBackground(null);
                 new DownloadImageTask((ImageView) findViewById(R.id.cat_picture))
-                        .execute(catPictureUrl);
+                        .execute(pictureUrl);
             }
 
         });
@@ -100,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
                             Log.i("parsecatjson onresponse", "lewat catPictureUrl[0] =");
                             Log.i("[onresponse][try]", catPictureUrl[0]);
                         } catch (JSONException e) {
+                            Log.i("[jsonexception e]", "masuk jsonexception e");
                             Log.i("[jsonexception e]", e.toString());
                             e.printStackTrace();
                         }
@@ -126,13 +119,11 @@ public class MainActivity extends AppCompatActivity {
                     public void onResponse(JSONArray response) {
                         try {
                             JSONArray jsonArray = new JSONArray(response.toString());
-                            for (int i = 0; i < jsonArray.length(); i++) {
-                                JSONObject jsonObject = jsonArray.getJSONObject(i);
-                                String quote = jsonObject.getString("quote");
-                                Log.i("array", jsonObject.toString());
-                                myTextViewResult.setText("");
-                                myTextViewResult.append(quote);
-                            }
+                            JSONObject jsonObject = jsonArray.getJSONObject(0);
+                            String quote = jsonObject.getString("quote");
+                            Log.i("array", jsonObject.toString());
+                            myTextViewResult.setText("");
+                            myTextViewResult.append(quote);
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -160,7 +151,14 @@ public class MainActivity extends AppCompatActivity {
             String urldisplay = urls[0];
             Log.i("doInBackground", "lewat urldisplay=");
             Bitmap mIcon11 = null;
+            Log.i("doInBackground", "URL DISPLAY: " + urldisplay);
+            Log.i("doInBackground", "len(urls): " + urls.length);
+            for (String s : urls) {
+                Log.i("for loop", s);
+            }
+            Log.i("doInBackground", "URLS: " + urls);
             Log.i("doInBackground", "lewat micon11 = null");
+
             try {
                 Log.i("doInBackground", "masuk try");
                 InputStream in = new java.net.URL(urldisplay).openStream();
@@ -168,6 +166,7 @@ public class MainActivity extends AppCompatActivity {
                 mIcon11 = BitmapFactory.decodeStream(in);
                 Log.i("doInBackground try", "micon11 =");
             } catch (Exception e) {
+                Log.i("doinbackground", "masuk catch exception");
                 Log.e("Error", e.getMessage());
                 e.printStackTrace();
             }
