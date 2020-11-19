@@ -64,13 +64,40 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                String url = "https://api.thecatapi.com/v1/images/search";
+                String catPictureUrl = parseCatJSON();
                 imageView.setBackground(null);
-                new DownloadImageTask(imageView).execute(url);
+                new DownloadImageTask(imageView).execute(catPictureUrl);
             }
 
         });
 
+    }
+
+    private String parseCatJSON() {
+        String url = "https://api.thecatapi.com/v1/images/search";
+        final String[] catPictureUrl = {""};
+        JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        try {
+                            JSONArray jsonArray = new JSONArray(response.toString());
+                            JSONObject jsonObject = jsonArray.getJSONObject(0);
+                            catPictureUrl[0] = jsonObject.getString("url");
+                            Log.i("array", jsonObject.toString());
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+            }
+        });
+        myRequestQueue.add(request);
+
+        return catPictureUrl[0];
     }
 
     private void parseQuoteJSON() {
