@@ -28,6 +28,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 
 import cz.msebera.android.httpclient.entity.mime.Header;
@@ -39,7 +40,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -64,45 +64,15 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
+                String url = "https://api.thecatapi.com/v1/images/search";
                 imageView.setBackground(null);
-                parseCatJSON();
+                new DownloadImageTask(imageView).execute(url);
             }
 
         });
 
     }
 
-    private void parseCatJSON() {
-        String url = "https://api.thecatapi.com/v1/images/search";
-        JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null,
-                new Response.Listener<JSONArray>() {
-                    @Override
-                    public void onResponse(JSONArray response) {
-                        try {
-                            JSONArray jsonArray = new JSONArray(response.toString());
-                            for (int i = 0; i < jsonArray.length(); i++) {
-                                JSONObject jsonObject = jsonArray.getJSONObject(i);
-                                String pictureUrl = jsonObject.getString("url");
-                                Log.i("array", jsonObject.toString());
-
-                                URL url = new URL(pictureUrl);
-                                Bitmap bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
-                                imageView.setImageBitmap(bmp);
-                                
-                            }
-
-                        } catch (IOException | JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                error.printStackTrace();
-            }
-        });
-        myRequestQueue.add(request);
-    }
     private void parseQuoteJSON() {
         String url = "https://thesimpsonsquoteapi.glitch.me/quotes";
 
@@ -131,6 +101,31 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         myRequestQueue.add(request);
+    }
+
+    private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
+        private ImageView bmImage;
+
+        public DownloadImageTask(ImageView bmImage) {
+            this.bmImage = bmImage;
+        }
+
+        protected Bitmap doInBackground(String... urls) {
+            String urldisplay = urls[0];
+            Bitmap mIcon11 = null;
+            try {
+                InputStream in = new java.net.URL(urldisplay).openStream();
+                mIcon11 = BitmapFactory.decodeStream(in);
+            } catch (Exception e) {
+                Log.e("Error", e.getMessage());
+                e.printStackTrace();
+            }
+            return mIcon11;
+        }
+
+        protected void onPostExecute(Bitmap result) {
+            bmImage.setImageBitmap(result);
+        }
     }
 }
 
