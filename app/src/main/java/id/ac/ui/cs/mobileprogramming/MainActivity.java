@@ -2,11 +2,14 @@ package id.ac.ui.cs.mobileprogramming;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,13 +27,15 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
+import java.net.URL;
+
 import cz.msebera.android.httpclient.entity.mime.Header;
 
 public class MainActivity extends AppCompatActivity {
     private TextView myTextViewResult;
     private RequestQueue myRequestQueue;
-
-    private String BASE_URL = "https://apiv2.bitcoinaverage.com/indices/global/ticker/BTC";
+    private ImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,42 +44,81 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         myTextViewResult = findViewById(R.id.text_view_result);
-        Button parseButton = findViewById(R.id.button_parse);
+        Button quoteButton = findViewById(R.id.button_random_quote);
+        Button catButton = findViewById(R.id.button_random_cat_picture);
+
+        imageView = findViewById(R.id.cat_picture);
+        imageView.setBackground(null);
 
         myRequestQueue = Volley.newRequestQueue(this);
 
-        parseButton.setOnClickListener(new View.OnClickListener() {
-
+        quoteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 myTextViewResult.setText("");
-                parseJSON();
+                parseQuoteJSON();
             }
+        });
+
+        catButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                imageView.setBackground(null);
+                parseCatJSON();
+            }
+
         });
 
     }
 
-    private void parseJSON() {
+    private void parseCatJSON() {
+        String url = "https://api.thecatapi.com/v1/images/search";
+        JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        try {
+                            JSONArray jsonArray = new JSONArray(response.toString());
+                            for (int i = 0; i < jsonArray.length(); i++) {
+                                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                                String pictureUrl = jsonObject.getString("url");
+                                Log.i("array", jsonObject.toString());
+
+                                URL url = new URL(pictureUrl);
+                                Bitmap bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
+                                imageView.setImageBitmap(bmp);
+                                
+                            }
+
+                        } catch (IOException | JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+            }
+        });
+        myRequestQueue.add(request);
+    }
+    private void parseQuoteJSON() {
         String url = "https://thesimpsonsquoteapi.glitch.me/quotes";
-
-
-        // https://stackoverflow.com/questions/20997924/com-android-volley-parseerror-org-json-jsonexception
 
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
-
                         try {
-                            //JSONArray jsonArray = response.getJSONArray("");
                             JSONArray jsonArray = new JSONArray(response.toString());
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
                                 String quote = jsonObject.getString("quote");
                                 Log.i("array", jsonObject.toString());
+                                myTextViewResult.setText("");
                                 myTextViewResult.append(quote);
                             }
-
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -86,7 +130,9 @@ public class MainActivity extends AppCompatActivity {
                 error.printStackTrace();
             }
         });
-
         myRequestQueue.add(request);
     }
 }
+
+
+// CAT: https://api.thecatapi.com/v1/images/search
