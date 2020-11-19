@@ -27,8 +27,11 @@ import java.io.InputStream;
 
 public class MainActivity extends AppCompatActivity {
     private TextView myTextViewResult;
-    private RequestQueue myRequestQueue;
+    private RequestQueue quoteRequestQueue;
+    private RequestQueue catRequestQueue;
     private ImageView imageView;
+
+    String catPictureUrl = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +46,8 @@ public class MainActivity extends AppCompatActivity {
         imageView = findViewById(R.id.cat_picture);
         //imageView.setBackground(null);
 
-        myRequestQueue = Volley.newRequestQueue(this);
+        quoteRequestQueue = Volley.newRequestQueue(this);
+        catRequestQueue = Volley.newRequestQueue(this);
 
         quoteButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,17 +56,14 @@ public class MainActivity extends AppCompatActivity {
                 parseQuoteJSON();
             }
         });
-
         catButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
                 Log.i("onclick catbutton", "MASUKKKKKK");
-
                 String pictureUrl = parseCatJSON();
-
                 //String catPictureUrl = "https://cdn2.thecatapi.com/images/b1u.jpg";
-                Log.i("[cat button onclick]", pictureUrl);
+                Log.i("[onclick]", "pictureUrl: " + pictureUrl);
                 //imageView.setBackground(null);
                 new DownloadImageTask((ImageView) findViewById(R.id.cat_picture))
                         .execute(pictureUrl);
@@ -72,11 +73,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private String parseCatJSON() {
+    public String parseCatJSON() {
         Log.i("parsecatjson", "baru masuk method");
         String url = "https://api.thecatapi.com/v1/images/search";
         Log.i("parsecatjson", "lewat String url");
-        String[] catPictureUrl = {""};
+
         Log.i("parsecatjson", "lewat String[] catPictureUrl");
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONArray>() {
@@ -88,9 +89,9 @@ public class MainActivity extends AppCompatActivity {
                             Log.i("parsecatjson onresponse", "lewat jsonArray = new");
                             JSONObject jsonObject = jsonArray.getJSONObject(0);
                             Log.i("parsecatjson onresponse", "lewat jsonobject = jsonArray");
-                            catPictureUrl[0] = jsonObject.getString("url");
+                            catPictureUrl = jsonObject.getString("url");
                             Log.i("parsecatjson onresponse", "lewat catPictureUrl[0] =");
-                            Log.i("[onresponse][try]", catPictureUrl[0]);
+                            Log.i("[onresponse][try]", catPictureUrl);
                         } catch (JSONException e) {
                             Log.i("[jsonexception e]", "masuk jsonexception e");
                             Log.i("[jsonexception e]", e.toString());
@@ -105,9 +106,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Log.i("cat url: ", catPictureUrl[0]);
-        myRequestQueue.add(request);
-        return catPictureUrl[0];
+        Log.i("cat url: ", catPictureUrl);
+        catRequestQueue.add(request);
+        return catPictureUrl;
     }
 
     private void parseQuoteJSON() {
@@ -135,50 +136,13 @@ public class MainActivity extends AppCompatActivity {
                 error.printStackTrace();
             }
         });
-        myRequestQueue.add(request);
+
+
+        quoteRequestQueue.add(request);
+        Log.i("parsequotejson", "lewat myrequestqueue add request");
     }
 
-    class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
-        private ImageView bmImage;
 
-        public DownloadImageTask(ImageView bmImage) {
-            Log.i("class DownloadImageTask", "masuk constructor");
-            this.bmImage = bmImage;
-        }
-
-        protected Bitmap doInBackground(String... urls) {
-            Log.i("doInBackground", "masuk method");
-            String urldisplay = urls[0];
-            Log.i("doInBackground", "lewat urldisplay=");
-            Bitmap mIcon11 = null;
-            Log.i("doInBackground", "URL DISPLAY: " + urldisplay);
-            Log.i("doInBackground", "len(urls): " + urls.length);
-            for (String s : urls) {
-                Log.i("for loop", s);
-            }
-            Log.i("doInBackground", "URLS: " + urls);
-            Log.i("doInBackground", "lewat micon11 = null");
-
-            try {
-                Log.i("doInBackground", "masuk try");
-                InputStream in = new java.net.URL(urldisplay).openStream();
-                Log.i("doInBackground try", "lewat inputstream in =");
-                mIcon11 = BitmapFactory.decodeStream(in);
-                Log.i("doInBackground try", "micon11 =");
-            } catch (Exception e) {
-                Log.i("doinbackground", "masuk catch exception");
-                Log.e("Error", e.getMessage());
-                e.printStackTrace();
-            }
-            Log.i("doInBackground", "keluar try&catch");
-            return mIcon11;
-        }
-
-        protected void onPostExecute(Bitmap result) {
-            Log.i("onpostexecute", "masuk method=");
-            bmImage.setImageBitmap(result);
-        }
-    }
 }
 
 
