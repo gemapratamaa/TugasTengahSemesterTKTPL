@@ -14,6 +14,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.loopj.android.http.AsyncHttpClient;
@@ -46,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
+                myTextViewResult.setText("");
                 parseJSON();
             }
         });
@@ -55,17 +57,21 @@ public class MainActivity extends AppCompatActivity {
     private void parseJSON() {
         String url = "https://thesimpsonsquoteapi.glitch.me/quotes";
 
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
-                new Response.Listener<JSONObject>() {
+
+        // https://stackoverflow.com/questions/20997924/com-android-volley-parseerror-org-json-jsonexception
+
+        JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONArray>() {
                     @Override
-                    public void onResponse(JSONObject response) {
+                    public void onResponse(JSONArray response) {
+
                         try {
                             //JSONArray jsonArray = response.getJSONArray("");
                             JSONArray jsonArray = new JSONArray(response.toString());
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
                                 String quote = jsonObject.getString("quote");
-
+                                Log.i("array", jsonObject.toString());
                                 myTextViewResult.append(quote);
                             }
 
