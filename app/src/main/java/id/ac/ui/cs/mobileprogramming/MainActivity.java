@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
 
         myTextViewResult = findViewById(R.id.text_view_result);
         Button quoteButton = findViewById(R.id.button_random_quote);
-        
+
         Button catButton = findViewById(R.id.button_random_cat_picture);
 
         imageView = findViewById(R.id.cat_picture);
@@ -65,7 +65,11 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
+                Log.i("onclock catbutton", "MASUKKKKKK");
+
                 String catPictureUrl = parseCatJSON();
+
+                //String catPictureUrl = "https://cdn2.thecatapi.com/images/b1u.jpg";
                 Log.i("[cat button onclick]", catPictureUrl);
                 //imageView.setBackground(null);
                 new DownloadImageTask((ImageView) findViewById(R.id.cat_picture))
@@ -77,16 +81,23 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private String parseCatJSON() {
+        Log.i("parsecatjson", "baru masuk method");
         String url = "https://api.thecatapi.com/v1/images/search";
+        Log.i("parsecatjson", "lewat String url");
         String[] catPictureUrl = {""};
+        Log.i("parsecatjson", "lewat String[] catPictureUrl");
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
                         try {
+                            Log.i("parsecatjson onresponse", "masuk onResponse");
                             JSONArray jsonArray = new JSONArray(response.toString());
+                            Log.i("parsecatjson onresponse", "lewat jsonArray = new");
                             JSONObject jsonObject = jsonArray.getJSONObject(0);
+                            Log.i("parsecatjson onresponse", "lewat jsonobject = jsonArray");
                             catPictureUrl[0] = jsonObject.getString("url");
+                            Log.i("parsecatjson onresponse", "lewat catPictureUrl[0] =");
                             Log.i("[onresponse][try]", catPictureUrl[0]);
                         } catch (JSONException e) {
                             Log.i("[jsonexception e]", e.toString());
@@ -140,23 +151,32 @@ public class MainActivity extends AppCompatActivity {
         private ImageView bmImage;
 
         public DownloadImageTask(ImageView bmImage) {
+            Log.i("class DownloadImageTask", "masuk constructor");
             this.bmImage = bmImage;
         }
 
         protected Bitmap doInBackground(String... urls) {
+            Log.i("doInBackground", "masuk method");
             String urldisplay = urls[0];
+            Log.i("doInBackground", "lewat urldisplay=");
             Bitmap mIcon11 = null;
+            Log.i("doInBackground", "lewat micon11 = null");
             try {
+                Log.i("doInBackground", "masuk try");
                 InputStream in = new java.net.URL(urldisplay).openStream();
+                Log.i("doInBackground try", "lewat inputstream in =");
                 mIcon11 = BitmapFactory.decodeStream(in);
+                Log.i("doInBackground try", "micon11 =");
             } catch (Exception e) {
                 Log.e("Error", e.getMessage());
                 e.printStackTrace();
             }
+            Log.i("doInBackground", "keluar try&catch");
             return mIcon11;
         }
 
         protected void onPostExecute(Bitmap result) {
+            Log.i("onpostexecute", "masuk method=");
             bmImage.setImageBitmap(result);
         }
     }
