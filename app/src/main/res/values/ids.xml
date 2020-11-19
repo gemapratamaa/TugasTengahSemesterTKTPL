@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="priceLabel" type="id" />
+    <item name="btnUSD" type="id" />
+    <item name="btnZAR" type="id" />
+    <item name="btnAUD" type="id" />
+</resources>
