@@ -1,3 +1,5 @@
 https://forum.freecodecamp.org/t/created-a-quote-api-for-all-to-use/130714
 https://www.youtube.com/watch?v=y2xtLqP8dSQ&ab_channel=CodinginFlow
 https://stackoverflow.com/questions/20997924/com-android-volley-parseerror-org-json-jsonexception
+https://stackoverflow.com/questions/5776851/load-image-from-url
+https://stackoverflow.com/questions/6343166/how-to-fix-android-os-networkonmainthreadexception

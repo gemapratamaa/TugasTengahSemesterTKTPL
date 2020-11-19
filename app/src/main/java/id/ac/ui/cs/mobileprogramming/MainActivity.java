@@ -45,10 +45,11 @@ public class MainActivity extends AppCompatActivity {
 
         myTextViewResult = findViewById(R.id.text_view_result);
         Button quoteButton = findViewById(R.id.button_random_quote);
+        
         Button catButton = findViewById(R.id.button_random_cat_picture);
 
         imageView = findViewById(R.id.cat_picture);
-        imageView.setBackground(null);
+        //imageView.setBackground(null);
 
         myRequestQueue = Volley.newRequestQueue(this);
 
@@ -65,8 +66,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String catPictureUrl = parseCatJSON();
-                imageView.setBackground(null);
-                new DownloadImageTask(imageView).execute(catPictureUrl);
+                Log.i("[cat button onclick]", catPictureUrl);
+                //imageView.setBackground(null);
+                new DownloadImageTask((ImageView) findViewById(R.id.cat_picture))
+                        .execute(catPictureUrl);
             }
 
         });
@@ -75,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
 
     private String parseCatJSON() {
         String url = "https://api.thecatapi.com/v1/images/search";
-        final String[] catPictureUrl = {""};
+        String[] catPictureUrl = {""};
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONArray>() {
                     @Override
@@ -84,19 +87,22 @@ public class MainActivity extends AppCompatActivity {
                             JSONArray jsonArray = new JSONArray(response.toString());
                             JSONObject jsonObject = jsonArray.getJSONObject(0);
                             catPictureUrl[0] = jsonObject.getString("url");
-                            Log.i("array", jsonObject.toString());
+                            Log.i("[onresponse][try]", catPictureUrl[0]);
                         } catch (JSONException e) {
+                            Log.i("[jsonexception e]", e.toString());
                             e.printStackTrace();
                         }
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                Log.i("[onerrorresponse]", error.toString());
                 error.printStackTrace();
             }
         });
-        myRequestQueue.add(request);
 
+        Log.i("cat url: ", catPictureUrl[0]);
+        myRequestQueue.add(request);
         return catPictureUrl[0];
     }
 
@@ -130,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
         myRequestQueue.add(request);
     }
 
-    private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
+    class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
         private ImageView bmImage;
 
         public DownloadImageTask(ImageView bmImage) {
