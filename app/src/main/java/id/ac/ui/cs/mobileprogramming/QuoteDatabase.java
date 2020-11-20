@@ -26,7 +26,6 @@ public abstract class QuoteDatabase extends RoomDatabase {
     }
 
     private static RoomDatabase.Callback roomCallback = new RoomDatabase.Callback() {
-
         @Override
         public void onCreate(@NonNull SupportSQLiteDatabase db) {
             super.onCreate(db);
@@ -35,7 +34,6 @@ public abstract class QuoteDatabase extends RoomDatabase {
     };
 
     private static class PopulateDbAsyncTask extends AsyncTask<Void, Void, Void> {
-
         private QuoteDao quoteDao;
 
         private PopulateDbAsyncTask(QuoteDatabase db) {
@@ -45,7 +43,6 @@ public abstract class QuoteDatabase extends RoomDatabase {
 
         @Override
         protected Void doInBackground(Void... voids) {
-
             String sampleQuote1 = "Your limitation - it's only your imagination.";
             String sampleQuote2 = "Push yourself, because no one else is going to do it for you.";
             String sampleQuote3 = "Sometimes later becomes never. Do it now.";
@@ -56,7 +53,6 @@ public abstract class QuoteDatabase extends RoomDatabase {
 
             return null;
         }
-
 
     }
 }
