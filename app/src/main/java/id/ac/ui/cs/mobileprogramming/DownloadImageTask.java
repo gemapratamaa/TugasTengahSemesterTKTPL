@@ -19,7 +19,7 @@ public class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
     protected Bitmap doInBackground(String... urls) {
         Log.i("doInBackground", "masuk method");
         String urldisplay = urls[0];
-        Log.i("doInBackground", "lewat urldisplay=");
+        Log.i("doInBackground", "lewat urldisplay=urls[0]");
         Bitmap mIcon11 = null;
         Log.i("doInBackground", "URL DISPLAY: " + urldisplay);
         Log.i("doInBackground", "len(urls): " + urls.length);
