@@ -4,7 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background_color"
     tools:context=".MainActivity">
+
+
 
     android:padding="16dp"
 
@@ -22,7 +25,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="34dp"
-        android:text="random quote" />
+        android:text="@string/random_quote" />
 
     <Button
         android:id="@+id/button_random_cat_picture"
@@ -31,7 +34,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="100dp"
-        android:text="random cat picture" />
+        android:text="@string/random_cat_picture" />
 
     <ImageView
         android:id="@+id/cat_picture"
@@ -41,6 +44,5 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="300dp"
         app:srcCompat="@mipmap/ic_launcher" />
-
 
 </RelativeLayout>

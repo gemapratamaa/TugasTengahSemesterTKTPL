@@ -34,12 +34,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         myTextViewResult = findViewById(R.id.text_view_result);
+        imageView = findViewById(R.id.cat_picture);
         Button quoteButton = findViewById(R.id.button_random_quote);
-
         Button catButton = findViewById(R.id.button_random_cat_picture);
 
-        imageView = findViewById(R.id.cat_picture);
-        //imageView.setBackground(null);
 
         quoteRequestQueue = Volley.newRequestQueue(this);
         catRequestQueue = Volley.newRequestQueue(this);
@@ -48,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 myTextViewResult.setText("");
+                imageView.setBackground(null);
+                imageView.setImageResource(android.R.color.transparent); // clear image
                 parseQuoteJSON();
             }
         });
@@ -58,8 +58,7 @@ public class MainActivity extends AppCompatActivity {
                 myTextViewResult.setText("");
                 String pictureUrl = parseCatJSON();
                 imageView.setBackground(null);
-                new DownloadImageTask(findViewById(R.id.cat_picture))
-                        .execute(pictureUrl);
+                new DownloadImageTask(findViewById(R.id.cat_picture)).execute(pictureUrl);
             }
 
         });
@@ -128,13 +127,7 @@ public class MainActivity extends AppCompatActivity {
                 error.printStackTrace();
             }
         });
-
         quoteRequestQueue.add(request);
         Log.i("parsequotejson", "lewat myrequestqueue add request");
     }
-
-
 }
-
-
-// CAT: https://api.thecatapi.com/v1/images/search

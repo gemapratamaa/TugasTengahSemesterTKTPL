@@ -23,10 +23,7 @@ public class SplashScreenActivity extends AppCompatActivity {
                 .withFooterText("by Gema Pratama Aditya")
                 .withLogo(R.drawable.logo);
 
-        config.getHeaderTextView().setTextColor(Color.WHITE);
         config.getFooterTextView().setTextColor(Color.WHITE);
-        config.getBeforeLogoTextView().setTextColor(Color.WHITE);
-        config.getAfterLogoTextView().setTextColor(Color.WHITE);
 
         View easySplashScreen = config.create();
         setContentView(easySplashScreen);
