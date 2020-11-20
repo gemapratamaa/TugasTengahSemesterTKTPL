@@ -22,8 +22,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
-    private TextView myTextViewResult;
-    private RequestQueue quoteRequestQueue;
+    //private TextView myTextViewResult;
+    //private RequestQueue quoteRequestQueue;
     private RequestQueue catRequestQueue;
     private ImageView imageView;
 
@@ -44,11 +44,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        myTextViewResult = findViewById(R.id.text_view_result);
+        //myTextViewResult = findViewById(R.id.text_view_result);
         imageView = findViewById(R.id.bubble_speech);
         Button quoteButton = findViewById(R.id.button_random_quote);
         Button catButton = findViewById(R.id.button_random_cat_picture);
-        quoteRequestQueue = Volley.newRequestQueue(this);
+        //quoteRequestQueue = Volley.newRequestQueue(this);
         catRequestQueue = Volley.newRequestQueue(this);
 
         imageView.setImageResource(R.drawable.bubblespeech);
@@ -121,31 +121,5 @@ public class MainActivity extends AppCompatActivity {
         return catPictureUrl;
     }
 
-    private void parseQuoteJSON() {
-        String url = "https://thesimpsonsquoteapi.glitch.me/quotes";
 
-        JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null,
-                new Response.Listener<JSONArray>() {
-                    @Override
-                    public void onResponse(JSONArray response) {
-                        try {
-                            JSONArray jsonArray = new JSONArray(response.toString());
-                            JSONObject jsonObject = jsonArray.getJSONObject(0);
-                            String quote = jsonObject.getString("quote");
-                            Log.i("array", jsonObject.toString());
-                            myTextViewResult.setText("");
-                            myTextViewResult.append(quote);
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                error.printStackTrace();
-            }
-        });
-        quoteRequestQueue.add(request);
-        Log.i("parsequotejson", "lewat myrequestqueue add request");
-    }
 }
