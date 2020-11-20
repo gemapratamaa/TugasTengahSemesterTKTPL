@@ -1,16 +1,13 @@
 package id.ac.ui.cs.mobileprogramming;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -22,8 +19,6 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.io.InputStream;
 
 public class MainActivity extends AppCompatActivity {
     private TextView myTextViewResult;
@@ -63,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
                 myTextViewResult.setText("");
                 String pictureUrl = parseCatJSON();
                 imageView.setBackground(null);
-                new DownloadImageTask((ImageView) findViewById(R.id.cat_picture))
+                new DownloadImageTask(findViewById(R.id.cat_picture))
                         .execute(pictureUrl);
             }
 
@@ -123,7 +118,6 @@ public class MainActivity extends AppCompatActivity {
                             Log.i("array", jsonObject.toString());
                             myTextViewResult.setText("");
                             myTextViewResult.append(quote);
-
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -134,7 +128,6 @@ public class MainActivity extends AppCompatActivity {
                 error.printStackTrace();
             }
         });
-
 
         quoteRequestQueue.add(request);
         Log.i("parsequotejson", "lewat myrequestqueue add request");
