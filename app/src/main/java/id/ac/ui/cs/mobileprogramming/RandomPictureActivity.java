@@ -33,6 +33,7 @@ public class RandomPictureActivity extends AppCompatActivity {
 
         retryButton = findViewById(R.id.retry_button);
         imageView = findViewById(R.id.random_picture);
+
         catRequestQueue = Volley.newRequestQueue(this);
         imageView.setImageResource(android.R.color.transparent); // clear image
         catPictureUrl = parseCatJSON();

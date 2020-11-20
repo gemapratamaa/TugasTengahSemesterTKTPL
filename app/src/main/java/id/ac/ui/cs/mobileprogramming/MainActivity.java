@@ -22,13 +22,28 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
-    //private TextView myTextViewResult;
-    //private RequestQueue quoteRequestQueue;
-    //private ImageView imageView;
-    //private RequestQueue catRequestQueue;
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
-    //String catPictureUrl = "";
+        Button quoteButton = findViewById(R.id.button_random_quote);
+        Button catButton = findViewById(R.id.button_random_cat_picture);
+
+        quoteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                changeToQuoteActivity();
+            }
+        });
+        catButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                changeToPictureActivity();
+            }
+        });
+    }
 
     public void changeToQuoteActivity () {
         Intent intent = new Intent(MainActivity.this, RandomQuoteActivity.class);
@@ -39,53 +54,4 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, RandomPictureActivity.class);
         startActivity(intent);
     }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        //myTextViewResult = findViewById(R.id.text_view_result);
-        //imageView = findViewById(R.id.bubble_speech);
-        Button quoteButton = findViewById(R.id.button_random_quote);
-        Button catButton = findViewById(R.id.button_random_cat_picture);
-        //quoteRequestQueue = Volley.newRequestQueue(this);
-        //catRequestQueue = Volley.newRequestQueue(this);
-
-        //imageView.setImageResource(R.drawable.bubblespeech);
-
-        quoteButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                changeToQuoteActivity();
-                /*
-                myTextViewResult.setText("");
-                imageView.setBackground(null);
-                imageView.setImageResource(android.R.color.transparent); // clear image
-                parseQuoteJSON();
-                */
-
-            }
-        });
-        catButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                changeToPictureActivity();
-                /*
-                myTextViewResult.setText("");
-                String pictureUrl = parseCatJSON();
-                imageView.setBackground(null);
-                new DownloadImageTask(findViewById(R.id.bubble_speech)).execute(pictureUrl);
-
-                 */
-            }
-        });
-
-
-
-    }
-
-
-
-
 }
