@@ -42,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
 
         imageView.setImageResource(R.drawable.bubblespeech);
 
+
+
         quoteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
