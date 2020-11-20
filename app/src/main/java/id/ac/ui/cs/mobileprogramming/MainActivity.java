@@ -1,5 +1,6 @@
 package id.ac.ui.cs.mobileprogramming;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -28,6 +29,16 @@ public class MainActivity extends AppCompatActivity {
 
     String catPictureUrl = "";
 
+    public void changeToQuoteActivity () {
+        Intent intent = new Intent(MainActivity.this, RandomQuoteActivity.class);
+        startActivity(intent);
+    }
+
+    public void changeToPictureActivity() {
+        Intent intent = new Intent(MainActivity.this, RandomPictureActivity.class);
+        startActivity(intent);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,26 +53,35 @@ public class MainActivity extends AppCompatActivity {
 
         imageView.setImageResource(R.drawable.bubblespeech);
 
-
-
         quoteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                changeToQuoteActivity();
+                /*
                 myTextViewResult.setText("");
                 imageView.setBackground(null);
                 imageView.setImageResource(android.R.color.transparent); // clear image
                 parseQuoteJSON();
+                */
+
             }
         });
         catButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                changeToPictureActivity();
+                /*
                 myTextViewResult.setText("");
                 String pictureUrl = parseCatJSON();
                 imageView.setBackground(null);
                 new DownloadImageTask(findViewById(R.id.bubble_speech)).execute(pictureUrl);
+
+                 */
             }
         });
+
+
+
     }
 
     public String parseCatJSON() {
