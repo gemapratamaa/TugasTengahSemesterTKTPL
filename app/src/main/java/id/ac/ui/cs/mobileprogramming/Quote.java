@@ -27,5 +27,4 @@ public class Quote {
         return quote;
     }
 
-
 }
