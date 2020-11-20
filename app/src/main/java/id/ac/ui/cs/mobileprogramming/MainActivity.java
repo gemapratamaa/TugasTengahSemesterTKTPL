@@ -34,13 +34,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         myTextViewResult = findViewById(R.id.text_view_result);
-        imageView = findViewById(R.id.cat_picture);
+        imageView = findViewById(R.id.bubble_speech);
         Button quoteButton = findViewById(R.id.button_random_quote);
         Button catButton = findViewById(R.id.button_random_cat_picture);
-
-
         quoteRequestQueue = Volley.newRequestQueue(this);
         catRequestQueue = Volley.newRequestQueue(this);
+
+        imageView.setImageResource(R.drawable.bubblespeech);
 
         quoteButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,24 +52,20 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         catButton.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View view) {
                 myTextViewResult.setText("");
                 String pictureUrl = parseCatJSON();
                 imageView.setBackground(null);
-                new DownloadImageTask(findViewById(R.id.cat_picture)).execute(pictureUrl);
+                new DownloadImageTask(findViewById(R.id.bubble_speech)).execute(pictureUrl);
             }
-
         });
-
     }
 
     public String parseCatJSON() {
         Log.i("parsecatjson", "baru masuk method");
         String url = "https://api.thecatapi.com/v1/images/search";
         Log.i("parsecatjson", "lewat String url");
-
         Log.i("parsecatjson", "lewat String[] catPictureUrl");
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONArray>() {
