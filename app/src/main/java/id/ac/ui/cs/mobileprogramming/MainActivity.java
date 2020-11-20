@@ -60,11 +60,9 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                Log.i("onclick catbutton", "MASUKKKKKK");
+                myTextViewResult.setText("");
                 String pictureUrl = parseCatJSON();
-                //String catPictureUrl = "https://cdn2.thecatapi.com/images/b1u.jpg";
-                Log.i("[onclick]", "pictureUrl: " + pictureUrl);
-                //imageView.setBackground(null);
+                imageView.setBackground(null);
                 new DownloadImageTask((ImageView) findViewById(R.id.cat_picture))
                         .execute(pictureUrl);
             }
@@ -106,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Log.i("cat url: ", catPictureUrl);
+        Log.i("cat url: ", "catPicture url" + catPictureUrl);
         catRequestQueue.add(request);
         return catPictureUrl;
     }
