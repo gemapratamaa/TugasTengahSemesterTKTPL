@@ -11,7 +11,7 @@ import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class AddQuoteActivity extends AppCompatActivity {
+public class AddEditQuoteActivity extends AppCompatActivity {
 
     public static final String EXTRA_QUOTE = "id.ac.ui.cs.mobileprogramming.EXTRA_QUOTE";
 

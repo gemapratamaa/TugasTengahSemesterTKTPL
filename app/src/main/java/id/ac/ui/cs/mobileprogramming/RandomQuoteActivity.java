@@ -52,7 +52,7 @@ public class RandomQuoteActivity extends AppCompatActivity {
         buttonAddQuote.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(RandomQuoteActivity.this, AddQuoteActivity.class);
+                Intent intent = new Intent(RandomQuoteActivity.this, AddEditQuoteActivity.class);
                 startActivityForResult(intent, ADD_QUOTE_REQUEST);
             }
         });
@@ -88,6 +88,16 @@ public class RandomQuoteActivity extends AppCompatActivity {
             }
         }).attachToRecyclerView(recyclerView);
 
+        adapter.setOnQuoteClickListener(new QuoteAdapter.OnQuoteClickListener() {
+
+            @Override
+            public void onQuoteClick(Quote quote) {
+                Intent intent = new Intent(RandomQuoteActivity.this, AddEditQuoteActivity.class);
+                intent.putExtra(AddEditQuoteActivity.EXTRA_QUOTE, quote.getQuote());
+            }
+
+        });
+
 
         myTextViewResult = findViewById(R.id.text_view_result);
         quoteRequestQueue = Volley.newRequestQueue(this);
@@ -101,7 +111,7 @@ public class RandomQuoteActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (resultCode == RESULT_OK && requestCode == ADD_QUOTE_REQUEST) {
-            String quote = data.getStringExtra(AddQuoteActivity.EXTRA_QUOTE);
+            String quote = data.getStringExtra(AddEditQuoteActivity.EXTRA_QUOTE);
 
             quoteViewModel.insert(new Quote(quote));
 
