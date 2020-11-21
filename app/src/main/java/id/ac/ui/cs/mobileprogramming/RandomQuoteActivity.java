@@ -140,8 +140,9 @@ public class RandomQuoteActivity extends AppCompatActivity {
         }
     }
 
-    private void parseQuoteJSON() {
+    public void parseQuoteJSON() {
         String url = "https://thesimpsonsquoteapi.glitch.me/quotes";
+        String quote = "";
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONArray>() {
                     @Override

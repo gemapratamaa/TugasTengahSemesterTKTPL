@@ -55,6 +55,7 @@ public class RandomPictureActivity extends AppCompatActivity {
 
 
     public String parseCatJSON() {
+
         Log.i("parsecatjson", "baru masuk method");
         String url = "https://api.thecatapi.com/v1/images/search";
         Log.i("parsecatjson", "lewat String url");
