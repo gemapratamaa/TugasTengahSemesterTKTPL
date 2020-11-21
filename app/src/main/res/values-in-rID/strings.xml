@@ -9,4 +9,7 @@
     <string name="swipe_left_to_delete_quote">Swipe kiri untuk menghapus kutipan!</string>
     <string name="remove_all_quotes">Hapus semua kutipan</string>
     <string name="fetch_again_button">Ambil lagi</string>
+    <string name="quote_cannot_be_empty">Kutipan tidak boleh kosong!</string>
+    <string name="quote_added">Kutipan ditambahkan</string>
+    <string name="all_quotes_removed">Semua kutipan terhapus</string>
 </resources>

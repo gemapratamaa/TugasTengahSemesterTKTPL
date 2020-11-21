@@ -49,7 +49,7 @@ public class RandomQuoteActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_random_quote);
 
-        Toast.makeText(RandomQuoteActivity.this, "Swipe left to delete a quote!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(RandomQuoteActivity.this, R.string.swipe_left_to_delete_quote, Toast.LENGTH_SHORT).show();
 
         fetchAgainButton = findViewById(R.id.fetch_again_button);
 
@@ -123,12 +123,9 @@ public class RandomQuoteActivity extends AppCompatActivity {
         if (resultCode == RESULT_OK && requestCode == ADD_QUOTE_REQUEST) {
             String quote = data.getStringExtra(AddEditQuoteActivity.EXTRA_QUOTE);
             quoteViewModel.insert(new Quote(quote));
-            Toast.makeText(this, "Quote added", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.quote_added, Toast.LENGTH_SHORT).show();
         }
 
-        //else {
-        //   Toast.makeText(this, "Add quote cancelled", Toast.LENGTH_SHORT).show();
-        //}
     }
 
     @Override
@@ -144,7 +141,7 @@ public class RandomQuoteActivity extends AppCompatActivity {
         switch(item.getItemId()) {
             case R.id.delete_all_quotes:
                 quoteViewModel.deleteAllQuotes();
-                Toast.makeText(this,"All quotes removed", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.all_quotes_removed, Toast.LENGTH_SHORT).show();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
