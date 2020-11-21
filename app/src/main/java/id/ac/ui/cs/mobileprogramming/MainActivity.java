@@ -33,9 +33,10 @@ public class MainActivity extends AppCompatActivity {
 
 
         reminder.setOnClickListener(v -> {
+            int id = (int) System.currentTimeMillis();
             Toast.makeText(this, "Hourly quote set!", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(MainActivity.this, NotificationBroadcast.class);
-            PendingIntent pendingIntent = PendingIntent.getBroadcast(MainActivity.this,0, intent,0);
+            PendingIntent pendingIntent = PendingIntent.getBroadcast(MainActivity.this,id, intent,0);
 
             AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
 
