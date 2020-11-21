@@ -56,26 +56,17 @@ public class RandomPictureActivity extends AppCompatActivity {
 
     public String parseCatJSON() {
 
-        Log.i("parsecatjson", "baru masuk method");
         String url = "https://api.thecatapi.com/v1/images/search";
-        Log.i("parsecatjson", "lewat String url");
-        Log.i("parsecatjson", "lewat String[] catPictureUrl");
+
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
                         try {
-                            Log.i("parsecatjson onresponse", "masuk onResponse");
                             JSONArray jsonArray = new JSONArray(response.toString());
-                            Log.i("parsecatjson onresponse", "lewat jsonArray = new");
                             JSONObject jsonObject = jsonArray.getJSONObject(0);
-                            Log.i("parsecatjson onresponse", "lewat jsonobject = jsonArray");
                             catPictureUrl = jsonObject.getString("url");
-                            Log.i("parsecatjson onresponse", "lewat catPictureUrl[0] =");
-                            Log.i("[onresponse][try]", catPictureUrl);
                         } catch (JSONException e) {
-                            Log.i("[jsonexception e]", "masuk jsonexception e");
-                            Log.i("[jsonexception e]", e.toString());
                             e.printStackTrace();
                         }
                     }
@@ -87,7 +78,6 @@ public class RandomPictureActivity extends AppCompatActivity {
             }
         });
 
-        Log.i("cat url: ", "catPicture url" + catPictureUrl);
         catRequestQueue.add(request);
         return catPictureUrl;
     }
