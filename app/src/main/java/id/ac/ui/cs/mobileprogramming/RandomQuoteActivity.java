@@ -140,9 +140,9 @@ public class RandomQuoteActivity extends AppCompatActivity {
         }
     }
 
-    public void parseQuoteJSON() {
+    public String parseQuoteJSON() {
         String url = "https://thesimpsonsquoteapi.glitch.me/quotes";
-        String quote = "";
+        String[] quote = {""};
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONArray>() {
                     @Override
@@ -150,8 +150,8 @@ public class RandomQuoteActivity extends AppCompatActivity {
                         try {
                             JSONArray jsonArray = new JSONArray(response.toString());
                             JSONObject jsonObject = jsonArray.getJSONObject(0);
-                            String quote = jsonObject.getString("quote");
-                            quoteViewModel.insert(new Quote(quote));
+                            quote[0] = jsonObject.getString("quote");
+                            quoteViewModel.insert(new Quote(quote[0]));
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -163,5 +163,6 @@ public class RandomQuoteActivity extends AppCompatActivity {
             }
         });
         quoteRequestQueue.add(request);
+        return quote[0];
     }
 }

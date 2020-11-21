@@ -60,7 +60,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-/*
+
+    /*
     public void sendNotification(View v) {
 
         //String quote = parseQuoteJSON();
@@ -72,7 +73,9 @@ public class MainActivity extends AppCompatActivity {
                         .setContentText("a")
 
     }
-    */
+
+     */
+
 
 
 }
