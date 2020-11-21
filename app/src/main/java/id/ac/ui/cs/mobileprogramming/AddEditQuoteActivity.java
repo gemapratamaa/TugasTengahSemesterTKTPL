@@ -14,6 +14,7 @@ import android.widget.Toast;
 public class AddEditQuoteActivity extends AppCompatActivity {
 
     public static final String EXTRA_QUOTE = "id.ac.ui.cs.mobileprogramming.EXTRA_QUOTE";
+    public static final String EXTRA_ID = "id.ac.ui.cs.mobileprogramming.EXTRA_ID";
 
     private EditText editTextQuote;
 
@@ -25,7 +26,16 @@ public class AddEditQuoteActivity extends AppCompatActivity {
         editTextQuote = findViewById(R.id.edit_quote_title);
 
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_delete); // ??
-        setTitle("Add Quote");
+
+        Intent intent = getIntent();
+
+        if (intent.hasExtra(EXTRA_ID)) {
+            setTitle("Edit Quote");
+            editTextQuote.setText(intent.getStringExtra(EXTRA_QUOTE));
+        } else {
+            setTitle("Add Quote");
+        }
+
     }
 
     @Override
@@ -55,6 +65,11 @@ public class AddEditQuoteActivity extends AppCompatActivity {
 
         Intent data = new Intent();
         data.putExtra(EXTRA_QUOTE, quote);
+
+        int id = getIntent().getIntExtra(EXTRA_ID, -1);
+        if (id != -1) {
+            data.putExtra(EXTRA_ID, id);
+        }
 
         setResult(RESULT_OK, data);
         finish();

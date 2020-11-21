@@ -34,13 +34,12 @@ import org.json.JSONObject;
 import java.util.List;
 
 public class RandomQuoteActivity extends AppCompatActivity {
-
     private TextView myTextViewResult;
     private RequestQueue quoteRequestQueue;
     private QuoteViewModel quoteViewModel;
 
     public static final int ADD_QUOTE_REQUEST = 1;
-    // private QuoteRepository = new QuoteRepository(this);
+    public static final int EDIT_QUOTE_REQUEST = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,7 +92,10 @@ public class RandomQuoteActivity extends AppCompatActivity {
             @Override
             public void onQuoteClick(Quote quote) {
                 Intent intent = new Intent(RandomQuoteActivity.this, AddEditQuoteActivity.class);
+
+                intent.putExtra(AddEditQuoteActivity.EXTRA_ID, quote.getId());
                 intent.putExtra(AddEditQuoteActivity.EXTRA_QUOTE, quote.getQuote());
+                startActivityForResult(intent, EDIT_QUOTE_REQUEST);
             }
 
         });
