@@ -20,35 +20,37 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <!--android:onClick="sendMessage"-->
+
+
     <Button
         android:id="@+id/button_random_quote"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="34dp"
+        android:layout_marginBottom="40dp"
         android:text="@string/random_quote_button"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.461"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
-
-    <!--android:onClick="sendMessage"-->
-
 
     <Button
         android:id="@+id/button_random_cat_picture"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="100dp"
+        android:layout_marginBottom="104dp"
         android:text="@string/random_cat_picture_button"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.457"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
 
     <ImageView
         android:id="@+id/bubble_speech"
-        android:layout_width="184dp"
-        android:layout_height="203dp"
-        android:layout_marginStart="276dp"
-        android:layout_marginBottom="180dp"
+        android:layout_width="127dp"
+        android:layout_height="123dp"
+        android:layout_marginStart="320dp"
+        android:layout_marginBottom="212dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/bubblespeech" />
@@ -60,7 +62,7 @@
         android:layout_marginTop="196dp"
         android:text="@string/hourly_quote"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.509"
+        app:layout_constraintHorizontal_bias="0.45"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
