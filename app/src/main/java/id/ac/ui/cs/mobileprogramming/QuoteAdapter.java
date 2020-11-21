@@ -14,6 +14,7 @@ import java.util.List;
 public class QuoteAdapter extends RecyclerView.Adapter<QuoteAdapter.QuoteHolder> {
 
     private List<Quote> quotes = new ArrayList<>();
+    private OnQuoteClickListener listener;
 
     @NonNull
     @Override
@@ -49,6 +50,28 @@ public class QuoteAdapter extends RecyclerView.Adapter<QuoteAdapter.QuoteHolder>
         public QuoteHolder(View itemView) {
             super(itemView);
             textViewQuote = itemView.findViewById(R.id.quote_view);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    if (listener != null && position != RecyclerView.NO_POSITION) {
+                        listener.onQuoteClick(quotes.get(position));
+                    }
+
+                }
+            });
+
+
         }
+    }
+
+    public interface OnQuoteClickListener {
+        void onQuoteClick(Quote quote);
+
+    }
+
+    public void setOnQuoteClickListener(OnQuoteClickListener listener) {
+        this.listener = listener;
     }
 }
