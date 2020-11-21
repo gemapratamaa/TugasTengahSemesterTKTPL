@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
             AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
 
-            long timeAtButtonClick = System.currentTimeMillis();
+            //long timeAtButtonClick = System.currentTimeMillis();
             long fiveSeconds = 10 * 1000;
             long oneHour = 3600 * 1000;
 
