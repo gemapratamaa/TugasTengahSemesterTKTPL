@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="152dp"
         android:layout_marginBottom="188dp"
-        android:text="Retry"
+        android:text="@string/fetch_again_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

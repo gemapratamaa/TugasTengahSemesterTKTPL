@@ -25,18 +25,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="34dp"
-        android:text="@string/random_quote"
-        android:onClick="sendMessage"
+        android:text="@string/random_quote_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
+
+        <!--android:onClick="sendMessage"-->
+
 
     <Button
         android:id="@+id/button_random_cat_picture"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="100dp"
-        android:text="@string/random_cat_picture"
+        android:text="@string/random_cat_picture_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
@@ -46,7 +48,6 @@
         android:layout_width="184dp"
         android:layout_height="203dp"
         android:layout_marginStart="112dp"
-
         android:layout_marginBottom="340dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"

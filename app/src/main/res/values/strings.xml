@@ -1,14 +1,22 @@
 <resources>
     <string name="app_name">FunQuotesAndPics</string>
-    <string name="title_activity_splash_sceren">SplashScerenActivity</string>
+    <string name="title_activity_splash_sceren" translatable="false">SplashScerenActivity</string>
     <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
+    <string name="first_fragment_label" translatable="false">First Fragment</string>
+    <string name="second_fragment_label" translatable="false">Second Fragment</string>
+    <string name="next" translatable="false">Next</string>
+    <string name="previous" translatable="false">Previous</string>
+    <string name="hello_first_fragment" translatable="false">Hello first fragment</string>
+    <string name="hello_second_fragment" translatable="false">Hello second fragment. Arg: %1$s</string>
 
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <!-- String buatan -->
     <string name="random_quote">random quote</string>
     <string name="random_cat_picture">random cat picture</string>
+    <string name="type_quote_here_hint">Type quote here...</string>
+    <string name="random_quote_button">Random Quote</string>
+    <string name="random_cat_picture_button">Random Cat Picture</string>
+    <string name="swipe_left_to_delete_quote">Swipe left to delete quote!</string>
+    <string name="remove_all_quotes">Remove all quotes</string>
+    <string name="fetch_again_button">Fetch again</string>
+
 </resources>

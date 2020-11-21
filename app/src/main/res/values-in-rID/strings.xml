@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">FunQuotesAndPics</string>
+    <string name="random_quote">Kutipan acak</string>
+    <string name="random_cat_picture">Gambar kucing random</string>
+    <string name="type_quote_here_hint">Ketik kutipan di sini...</string>
+    <string name="random_quote_button">Kutipan acak</string>
+    <string name="random_cat_picture_button">Gambar kucing random</string>
+    <string name="swipe_left_to_delete_quote">Swipe kiri untuk menghapus kutipan!</string>
+    <string name="remove_all_quotes">Hapus semua kutipan</string>
+    <string name="fetch_again_button">Ambil lagi</string>
+</resources>
