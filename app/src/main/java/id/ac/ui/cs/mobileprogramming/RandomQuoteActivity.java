@@ -35,7 +35,7 @@ import org.json.JSONObject;
 import java.util.List;
 
 public class RandomQuoteActivity extends AppCompatActivity {
-    private TextView myTextViewResult;
+    //private TextView myTextViewResult;
     private RequestQueue quoteRequestQueue;
     private QuoteViewModel quoteViewModel;
     private Button fetchAgainButton;
@@ -49,6 +49,8 @@ public class RandomQuoteActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_random_quote);
 
+        Toast.makeText(RandomQuoteActivity.this, "Swipe left to delete a quote!", Toast.LENGTH_SHORT).show();
+
         fetchAgainButton = findViewById(R.id.fetch_again_button);
 
         fetchAgainButton.setOnClickListener(new View.OnClickListener() {
@@ -56,7 +58,7 @@ public class RandomQuoteActivity extends AppCompatActivity {
             public void onClick(View v) {
                 parseQuoteJSON();
             }
-        })
+        });
 
         FloatingActionButton buttonAddQuote = findViewById(R.id.button_add_quote);
         buttonAddQuote.setOnClickListener(new View.OnClickListener() {
@@ -77,7 +79,7 @@ public class RandomQuoteActivity extends AppCompatActivity {
         quoteViewModel.getAllQuotes().observe(this, new Observer<List<Quote>>() {
             @Override
             public void onChanged(List<Quote> quotes) {
-                //Toast.makeText(RandomQuoteActivity.this, "onChanged", Toast.LENGTH_SHORT).show();
+
                 adapter.setQuotes(quotes);
             }
         });
@@ -107,7 +109,7 @@ public class RandomQuoteActivity extends AppCompatActivity {
 
         });
 
-        myTextViewResult = findViewById(R.id.quote_text);
+        //myTextViewResult = findViewById(R.id.quote_text);
         quoteRequestQueue = Volley.newRequestQueue(this);
         parseQuoteJSON();
 
