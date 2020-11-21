@@ -25,7 +25,7 @@ public class AddEditQuoteActivity extends AppCompatActivity {
 
         editTextQuote = findViewById(R.id.edit_quote_title);
 
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_delete); // ??
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_back); // ??
 
         Intent intent = getIntent();
 
