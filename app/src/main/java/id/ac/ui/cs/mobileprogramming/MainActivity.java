@@ -73,23 +73,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
-    public void sendNotification(View v) {
-        RandomQuoteActivity rqa = new RandomQuoteActivity();
-
-        Notification notification =
-                new NotificationCompat.Builder(this, ApplicationWrapper.CHANNEL_1_ID)
-                        .setSmallIcon(R.drawable.bubblespeech)
-                        .setContentTitle("Your quote")
-                        .setContentText("testtttttttt")
-                        .setPriority(NotificationCompat.PRIORITY_HIGH)
-                        .setCategory(NotificationCompat.CATEGORY_MESSAGE)
-                        .build();
-
-        notificationManager.notify(1, notification);
-
-    }
-
     private void createNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             CharSequence name = "My reminder";
