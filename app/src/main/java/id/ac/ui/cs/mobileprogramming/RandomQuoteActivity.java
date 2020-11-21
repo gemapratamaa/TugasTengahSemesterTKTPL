@@ -29,6 +29,7 @@ public class RandomQuoteActivity extends AppCompatActivity {
     private TextView myTextViewResult;
     private RequestQueue quoteRequestQueue;
     private QuoteViewModel quoteViewModel;
+    // private QuoteRepository = new QuoteRepository(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +71,6 @@ public class RandomQuoteActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONArray response) {
                         try {
-
                             Log.i(getClass().getName(), "masuk onresponse try");
                             JSONArray jsonArray = new JSONArray(response.toString());
                             JSONObject jsonObject = jsonArray.getJSONObject(0);
