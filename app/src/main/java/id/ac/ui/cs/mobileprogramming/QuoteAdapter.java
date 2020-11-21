@@ -39,6 +39,10 @@ public class QuoteAdapter extends RecyclerView.Adapter<QuoteAdapter.QuoteHolder>
         notifyDataSetChanged();
     }
 
+    public Quote getQuoteAt(int position) {
+        return quotes.get(position);
+    }
+
     class QuoteHolder extends RecyclerView.ViewHolder {
         private TextView textViewQuote;
 
