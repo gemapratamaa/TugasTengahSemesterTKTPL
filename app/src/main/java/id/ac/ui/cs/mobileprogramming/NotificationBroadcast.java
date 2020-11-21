@@ -8,25 +8,22 @@ import android.util.Log;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
-import com.android.volley.Request;
-import com.android.volley.toolbox.JsonArrayRequest;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.concurrent.atomic.AtomicReference;
+import java.util.Random;
 
 public class NotificationBroadcast extends BroadcastReceiver {
+
+    //public Stack<String> stack = new Stack<>();
 
     // https://stackoverflow.com/questions/16855849/multiple-notifications-and-only-show-the-first-one-in-android
     @Override
     public void onReceive(Context context, Intent intent) {
+        Random rand = new Random();
         Log.i(getClass().getName(), "masuk onreceive");
         int id = (int) System.currentTimeMillis();
 
-        String randomQuote = randomQuote();
-        Log.i("randomquote: ",randomQuote);
+        //pushQuote();
+        String randomQuote = QuoteCollections.QUOTES[rand.nextInt(QuoteCollections.QUOTES.length)];
+        Log.i("randomquote: ", randomQuote);
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context,
                 "backgroundNotif")
@@ -41,6 +38,7 @@ public class NotificationBroadcast extends BroadcastReceiver {
 
     }
 
+    /* capek debug ini
     // http://tutorials.jenkov.com/java-util-concurrent/atomicreference.html
     private String randomQuote() {
         Log.i(getClass().getName(), "masuk randomquote()");
@@ -63,6 +61,36 @@ public class NotificationBroadcast extends BroadcastReceiver {
         return quote.get();
 
     }
+
+    private void pushQuote() {
+        Log.i(getClass().getName(), "masuk pushquote()");
+        String url = "https://thesimpsonsquoteapi.glitch.me/quotes";
+
+        JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        try {
+                            Log.i(getClass().getName(), "masuk try");
+                            JSONArray jsonArray = new JSONArray(response.toString());
+                            JSONObject jsonObject = jsonArray.getJSONObject(0);
+                            String quote = jsonObject.getString("quote");
+                            Log.i("quote:", quote);
+                            stack.push(quote);
+                        } catch (JSONException e) {
+                            Log.i(getClass().getName(), "catch");
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+            }
+        });
+
+    }
+    */
 
 
 }

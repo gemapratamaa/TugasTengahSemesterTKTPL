@@ -16,6 +16,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
+import java.util.Calendar;
+
 public class MainActivity extends AppCompatActivity {
 
     private NotificationManagerCompat notificationManager;
@@ -44,8 +46,8 @@ public class MainActivity extends AppCompatActivity {
             long fiveSeconds = 10 * 1000;
             long oneHour = 3600 * 1000;
 
-            alarmManager.set(AlarmManager.RTC_WAKEUP,
-                    timeAtButtonClick + fiveSeconds,
+            alarmManager.setRepeating(AlarmManager.RTC, Calendar.getInstance().getTimeInMillis(),
+                    fiveSeconds,
                     pendingIntent
             );
         });
