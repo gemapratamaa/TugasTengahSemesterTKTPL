@@ -11,17 +11,6 @@
 
     android:padding="16dp"
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="59dp"
-        android:onClick="sendNotification"
-        android:text="Send on Channel 1"
-        app:layout_constraintBottom_toTopOf="@+id/button_random_cat_picture"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <TextView
         android:id="@+id/text_view_result"
         android:layout_width="wrap_content"
@@ -68,8 +57,8 @@
         android:id="@+id/button_reminder"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="79dp"
-        android:text="@string/button_reminder"
+        android:layout_marginTop="428dp"
+        android:text="@string/hourly_quote"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

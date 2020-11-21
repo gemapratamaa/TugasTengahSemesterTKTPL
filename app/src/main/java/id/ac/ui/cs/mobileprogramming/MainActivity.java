@@ -5,7 +5,6 @@ import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -25,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        createNotificationChannel();
         Button quoteButton = findViewById(R.id.button_random_quote);
         Button catButton = findViewById(R.id.button_random_cat_picture);
 
@@ -35,17 +35,18 @@ public class MainActivity extends AppCompatActivity {
         reminder.setOnClickListener(v -> {
             Toast.makeText(this, "Hourly quote set!", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(MainActivity.this, NotificationBroadcast.class);
-            PendingIntent pendingIntent = PendingIntent.getBroadcast(MainActivity.this,0,intent,0);
+            PendingIntent pendingIntent = PendingIntent.getBroadcast(MainActivity.this,0, intent,0);
 
             AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
 
             long timeAtButtonClick = System.currentTimeMillis();
-            long fiveSeconds = 5 * 1000;
+            long fiveSeconds = 10 * 1000;
             long oneHour = 3600 * 1000;
 
             alarmManager.set(AlarmManager.RTC_WAKEUP,
                     timeAtButtonClick + fiveSeconds,
-                    pendingIntent);
+                    pendingIntent
+            );
         });
 
 
@@ -90,12 +91,13 @@ public class MainActivity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             CharSequence name = "My reminder";
             String description = "My reminder";
-            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            int importance = NotificationManager.IMPORTANCE_HIGH;
 
             NotificationChannel channel = new NotificationChannel("backgroundNotif", name, importance);
             channel.setDescription(description);
 
             NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            assert notificationManager != null;
             notificationManager.createNotificationChannel(channel);
         }
     }
