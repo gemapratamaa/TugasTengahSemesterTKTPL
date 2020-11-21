@@ -25,7 +25,7 @@ public class AddEditQuoteActivity extends AppCompatActivity {
 
         editTextQuote = findViewById(R.id.edit_quote_title);
 
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_back); // ??
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_back);
 
         Intent intent = getIntent();
 
@@ -33,7 +33,7 @@ public class AddEditQuoteActivity extends AppCompatActivity {
             setTitle("Edit Quote");
             editTextQuote.setText(intent.getStringExtra(EXTRA_QUOTE));
         } else {
-            setTitle("Add Quote");
+            setTitle(getString(R.string.add_quote_title));
         }
 
     }
@@ -51,7 +51,6 @@ public class AddEditQuoteActivity extends AppCompatActivity {
             saveQuote();
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 

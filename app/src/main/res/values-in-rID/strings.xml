@@ -12,4 +12,5 @@
     <string name="quote_cannot_be_empty">Kutipan tidak boleh kosong!</string>
     <string name="quote_added">Kutipan ditambahkan</string>
     <string name="all_quotes_removed">Semua kutipan terhapus</string>
+    <string name="add_quote_title">Tambah Kutipan</string>
 </resources>

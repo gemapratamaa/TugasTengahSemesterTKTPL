@@ -7,7 +7,6 @@
     android:background="@color/background_color"
     tools:context=".RandomQuoteActivity">
 
-
     <View
         android:id="@+id/quote_view_result"
         android:layout_width="wrap_content"
@@ -17,17 +16,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
-
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
         android:layout_marginBottom="150dp"
@@ -42,21 +38,9 @@
         android:layout_marginStart="336dp"
         android:layout_marginTop="656dp"
         android:src="@drawable/ic_add"
-
         app:layout_constraintStart_toStartOf="@+id/recycler_view"
         app:layout_constraintTop_toTopOf="@+id/recycler_view" />
 
-    <!--
-    <TextView
-        android:id="@+id/quote_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="242dp"
-        android:text="TextView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-    -->
     <Button
         android:id="@+id/fetch_again_button"
         android:layout_width="wrap_content"

@@ -21,5 +21,6 @@
     <string name="quote_cannot_be_empty">Quote cannot be empty!</string>
     <string name="quote_added">Quote added</string>
     <string name="all_quotes_removed">All quotes removed</string>
+    <string name="add_quote_title">Add Quote</string>
 
 </resources>

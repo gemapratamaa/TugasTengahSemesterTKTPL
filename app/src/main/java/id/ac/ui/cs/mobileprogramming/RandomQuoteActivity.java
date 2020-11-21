@@ -1,5 +1,14 @@
 package id.ac.ui.cs.mobileprogramming;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,17 +17,6 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.content.Intent;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -35,7 +33,6 @@ import org.json.JSONObject;
 import java.util.List;
 
 public class RandomQuoteActivity extends AppCompatActivity {
-    //private TextView myTextViewResult;
     private RequestQueue quoteRequestQueue;
     private QuoteViewModel quoteViewModel;
     private Button fetchAgainButton;
@@ -45,7 +42,7 @@ public class RandomQuoteActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.i(getClass().getName(), "masuk oncreate");
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_random_quote);
 
@@ -93,7 +90,6 @@ public class RandomQuoteActivity extends AppCompatActivity {
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
                 quoteViewModel.delete(adapter.getQuoteAt(viewHolder.getAdapterPosition()));
-                //Toast.makeText(RandomQuoteActivity.this, "Quote removed", Toast.LENGTH_SHORT).show();
             }
         }).attachToRecyclerView(recyclerView);
 
@@ -109,11 +105,9 @@ public class RandomQuoteActivity extends AppCompatActivity {
 
         });
 
-        //myTextViewResult = findViewById(R.id.quote_text);
         quoteRequestQueue = Volley.newRequestQueue(this);
         parseQuoteJSON();
 
-        Log.i(getClass().getName(), "parsequotejson() lewat");
     }
 
     @Override
@@ -125,7 +119,6 @@ public class RandomQuoteActivity extends AppCompatActivity {
             quoteViewModel.insert(new Quote(quote));
             Toast.makeText(this, R.string.quote_added, Toast.LENGTH_SHORT).show();
         }
-
     }
 
     @Override
@@ -134,7 +127,6 @@ public class RandomQuoteActivity extends AppCompatActivity {
         menuInflater.inflate(R.menu.quote_menu, menu);
         return true;
     }
-
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -155,16 +147,10 @@ public class RandomQuoteActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONArray response) {
                         try {
-                            Log.i(getClass().getName(), "masuk onresponse try");
                             JSONArray jsonArray = new JSONArray(response.toString());
                             JSONObject jsonObject = jsonArray.getJSONObject(0);
                             String quote = jsonObject.getString("quote");
-                            Log.i("array", jsonObject.toString());
-                            Log.i(getClass().getName(), "quote: " + quote);
-                            //#myTextViewResult.setText("");
-                            //myTextViewResult.append(quote);
                             quoteViewModel.insert(new Quote(quote));
-
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -176,6 +162,5 @@ public class RandomQuoteActivity extends AppCompatActivity {
             }
         });
         quoteRequestQueue.add(request);
-        Log.i("parsequotejson", "lewat myrequestqueue add request");
     }
 }
