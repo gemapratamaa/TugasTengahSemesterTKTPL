@@ -59,10 +59,8 @@ public class RandomQuoteActivity extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
-
         QuoteAdapter adapter = new QuoteAdapter();
         recyclerView.setAdapter(adapter);
-
 
         quoteViewModel = ViewModelProviders.of(this).get(QuoteViewModel.class);
         quoteViewModel.getAllQuotes().observe(this, new Observer<List<Quote>>() {
@@ -72,7 +70,6 @@ public class RandomQuoteActivity extends AppCompatActivity {
                 adapter.setQuotes(quotes);
             }
         });
-
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
 
             @Override
@@ -92,14 +89,12 @@ public class RandomQuoteActivity extends AppCompatActivity {
             @Override
             public void onQuoteClick(Quote quote) {
                 Intent intent = new Intent(RandomQuoteActivity.this, AddEditQuoteActivity.class);
-
                 intent.putExtra(AddEditQuoteActivity.EXTRA_ID, quote.getId());
                 intent.putExtra(AddEditQuoteActivity.EXTRA_QUOTE, quote.getQuote());
                 startActivityForResult(intent, EDIT_QUOTE_REQUEST);
             }
 
         });
-
 
         myTextViewResult = findViewById(R.id.text_view_result);
         quoteRequestQueue = Volley.newRequestQueue(this);
@@ -114,11 +109,8 @@ public class RandomQuoteActivity extends AppCompatActivity {
 
         if (resultCode == RESULT_OK && requestCode == ADD_QUOTE_REQUEST) {
             String quote = data.getStringExtra(AddEditQuoteActivity.EXTRA_QUOTE);
-
             quoteViewModel.insert(new Quote(quote));
-
             Toast.makeText(this, "Quote added", Toast.LENGTH_SHORT).show();
-
         } else {
             Toast.makeText(this, "Add quote cancelled", Toast.LENGTH_SHORT).show();
         }
@@ -127,7 +119,7 @@ public class RandomQuoteActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.quote_menu, menu)
+        menuInflater.inflate(R.menu.quote_menu, menu);
         return true;
     }
 
@@ -142,12 +134,10 @@ public class RandomQuoteActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
-
     }
 
     private void parseQuoteJSON() {
         String url = "https://thesimpsonsquoteapi.glitch.me/quotes";
-
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONArray>() {
                     @Override
