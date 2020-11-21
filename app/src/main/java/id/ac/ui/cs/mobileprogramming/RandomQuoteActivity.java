@@ -93,7 +93,7 @@ public class RandomQuoteActivity extends AppCompatActivity {
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
                 quoteViewModel.delete(adapter.getQuoteAt(viewHolder.getAdapterPosition()));
-                Toast.makeText(RandomQuoteActivity.this, "Quote removed", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(RandomQuoteActivity.this, "Quote removed", Toast.LENGTH_SHORT).show();
             }
         }).attachToRecyclerView(recyclerView);
 
@@ -124,9 +124,11 @@ public class RandomQuoteActivity extends AppCompatActivity {
             String quote = data.getStringExtra(AddEditQuoteActivity.EXTRA_QUOTE);
             quoteViewModel.insert(new Quote(quote));
             Toast.makeText(this, "Quote added", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(this, "Add quote cancelled", Toast.LENGTH_SHORT).show();
         }
+
+        //else {
+        //   Toast.makeText(this, "Add quote cancelled", Toast.LENGTH_SHORT).show();
+        //}
     }
 
     @Override
