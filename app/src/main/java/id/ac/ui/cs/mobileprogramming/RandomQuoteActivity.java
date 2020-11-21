@@ -2,6 +2,7 @@ package id.ac.ui.cs.mobileprogramming;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -30,6 +31,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.HashSet;
 import java.util.List;
 
 public class RandomQuoteActivity extends AppCompatActivity {
@@ -54,6 +56,7 @@ public class RandomQuoteActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 parseQuoteJSON();
+
             }
         });
 
@@ -140,18 +143,21 @@ public class RandomQuoteActivity extends AppCompatActivity {
         }
     }
 
-    public String parseQuoteJSON() {
+    private void parseQuoteJSON() {
         String url = "https://thesimpsonsquoteapi.glitch.me/quotes";
-        String[] quote = {""};
+
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONArray>() {
+                    //public QuoteViewModel quoteViewModel;
+
                     @Override
                     public void onResponse(JSONArray response) {
                         try {
                             JSONArray jsonArray = new JSONArray(response.toString());
                             JSONObject jsonObject = jsonArray.getJSONObject(0);
-                            quote[0] = jsonObject.getString("quote");
-                            quoteViewModel.insert(new Quote(quote[0]));
+                            String quote = jsonObject.getString("quote");
+                            Log.i("quote:", quote);
+                            quoteViewModel.insert(new Quote(quote));
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -163,6 +169,8 @@ public class RandomQuoteActivity extends AppCompatActivity {
             }
         });
         quoteRequestQueue.add(request);
-        return quote[0];
+
     }
+
+
 }
