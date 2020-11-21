@@ -30,6 +30,9 @@
         <activity android:name=".MainActivity" />
 
 
+        <receiver android:name=".NotificationBroadcast"/>
     </application>
+
+
 
 </manifest>

@@ -22,5 +22,7 @@
     <string name="quote_added">Quote added</string>
     <string name="all_quotes_removed">All quotes removed</string>
     <string name="add_quote_title">Add Quote</string>
+    <string name="button_reminder" translatable="false">Remind</string>
+    <string name="hourly_quote">Hourly quote</string>
 
 </resources>

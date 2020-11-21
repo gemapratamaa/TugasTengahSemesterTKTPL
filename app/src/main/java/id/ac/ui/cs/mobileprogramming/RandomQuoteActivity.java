@@ -31,7 +31,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.HashSet;
 import java.util.List;
 
 public class RandomQuoteActivity extends AppCompatActivity {
@@ -148,7 +147,6 @@ public class RandomQuoteActivity extends AppCompatActivity {
 
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONArray>() {
-                    //public QuoteViewModel quoteViewModel;
 
                     @Override
                     public void onResponse(JSONArray response) {

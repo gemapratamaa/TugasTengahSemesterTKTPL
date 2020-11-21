@@ -64,4 +64,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/bubblespeech" />
 
+    <Button
+        android:id="@+id/button_reminder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="79dp"
+        android:text="@string/button_reminder"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
