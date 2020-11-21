@@ -96,7 +96,7 @@ public class RandomQuoteActivity extends AppCompatActivity {
 
         });
 
-        myTextViewResult = findViewById(R.id.text_view_result);
+        myTextViewResult = findViewById(R.id.quote_text);
         quoteRequestQueue = Volley.newRequestQueue(this);
         parseQuoteJSON();
 

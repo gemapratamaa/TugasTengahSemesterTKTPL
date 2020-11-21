@@ -50,24 +50,32 @@ public class MainActivity extends AppCompatActivity {
         quoteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                changeToQuoteActivity();
+                Intent intent = new Intent(MainActivity.this, RandomQuoteActivity.class);
+                startActivity(intent);
+
             }
         });
         catButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                changeToPictureActivity();
+
+                Intent intent = new Intent(MainActivity.this, RandomPictureActivity.class);
+                startActivity(intent);
+                //changeToPictureActivity();
             }
         });
     }
 
-    public void changeToQuoteActivity () {
+    /*
+    public void changeToQuoteActivity (View view) {
         Intent intent = new Intent(MainActivity.this, RandomQuoteActivity.class);
         startActivity(intent);
     }
 
-    public void changeToPictureActivity() {
+    public void changeToPictureActivity(View view) {
         Intent intent = new Intent(MainActivity.this, RandomPictureActivity.class);
         startActivity(intent);
     }
+
+     */
 }

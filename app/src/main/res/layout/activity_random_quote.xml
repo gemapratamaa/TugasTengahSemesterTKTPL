@@ -7,16 +7,16 @@
     android:background="@color/background_color"
     tools:context=".RandomQuoteActivity">
 
-    <!--
+
     <View
-        android:id="@+id/text_view_result"
+        android:id="@+id/quote_view_result"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@android:color/black"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-     -->
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
@@ -30,16 +30,26 @@
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/button_add_quote"
+        android_layout_margin="32dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
         android:layout_marginStart="336dp"
         android:layout_marginTop="656dp"
         android:src="@drawable/ic_add"
-        android:layout_gravity="bottom|end"
-        android_layout_margin="32dp"
 
         app:layout_constraintStart_toStartOf="@+id/recycler_view"
         app:layout_constraintTop_toTopOf="@+id/recycler_view" />
+
+    <TextView
+        android:id="@+id/quote_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="242dp"
+        android:text="TextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
