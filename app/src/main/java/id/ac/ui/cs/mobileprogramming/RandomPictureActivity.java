@@ -1,6 +1,7 @@
 package id.ac.ui.cs.mobileprogramming;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -33,6 +34,8 @@ public class RandomPictureActivity extends AppCompatActivity {
 
         retryButton = findViewById(R.id.retry_button);
         imageView = findViewById(R.id.random_picture);
+
+
 
         catRequestQueue = Volley.newRequestQueue(this);
         imageView.setImageResource(android.R.color.transparent); // clear image

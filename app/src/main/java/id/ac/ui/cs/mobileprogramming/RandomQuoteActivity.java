@@ -1,10 +1,15 @@
 package id.ac.ui.cs.mobileprogramming;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -17,16 +22,38 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.List;
+
 public class RandomQuoteActivity extends AppCompatActivity {
 
     private TextView myTextViewResult;
     private RequestQueue quoteRequestQueue;
+    private QuoteViewModel quoteViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.i(getClass().getName(), "masuk oncreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_random_quote);
+
+
+        RecyclerView recyclerView = findViewById(R.id.recycler_view);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setHasFixedSize(true);
+
+        QuoteAdapter adapter = new QuoteAdapter();
+        recyclerView.setAdapter(adapter);
+
+
+        quoteViewModel = ViewModelProviders.of(this).get(QuoteViewModel.class);
+        quoteViewModel.getAllQuotes().observe(this, new Observer<List<Quote>>() {
+            @Override
+            public void onChanged(List<Quote> quotes) {
+                Toast.makeText(RandomQuoteActivity.this, "onChanged", Toast.LENGTH_SHORT).show();
+                adapter.setQuotes(quotes);
+            }
+        });
+
 
         myTextViewResult = findViewById(R.id.text_view_result);
         quoteRequestQueue = Volley.newRequestQueue(this);

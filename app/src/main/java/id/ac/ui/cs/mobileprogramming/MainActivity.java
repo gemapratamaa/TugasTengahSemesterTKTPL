@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        /*
         quoteViewModel = ViewModelProviders.of(this).get(QuoteViewModel.class);
         quoteViewModel.getAllQuotes().observe(this, new Observer<List<Quote>>() {
             @Override
@@ -42,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "onChanged", Toast.LENGTH_SHORT).show();
             }
         });
-
+*/
         Button quoteButton = findViewById(R.id.button_random_quote);
         Button catButton = findViewById(R.id.button_random_cat_picture);
 
