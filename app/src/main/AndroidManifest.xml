@@ -11,8 +11,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FunQuotesAndPics">
-        <activity android:name=".AddQuoteActivity"></activity>
-        <activity android:name=".RandomQuoteActivity" />
+        <activity android:name=".AddQuoteActivity"
+            android:parentActivityName=".RandomQuoteActivity"/>
+
+        <activity android:name=".RandomQuoteActivity"
+            android:launchMode="singleTop"/>
+
+
         <activity android:name=".RandomPictureActivity" />
         <activity android:name=".SplashScreenActivity">
             <intent-filter>
@@ -22,6 +27,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity" />
+
+
     </application>
 
 </manifest>

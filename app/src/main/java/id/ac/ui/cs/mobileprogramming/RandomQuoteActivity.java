@@ -1,13 +1,16 @@
 package id.ac.ui.cs.mobileprogramming;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,6 +20,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -29,6 +33,8 @@ public class RandomQuoteActivity extends AppCompatActivity {
     private TextView myTextViewResult;
     private RequestQueue quoteRequestQueue;
     private QuoteViewModel quoteViewModel;
+
+    public static final int ADD_QUOTE_REQUEST = 1;
     // private QuoteRepository = new QuoteRepository(this);
 
     @Override
@@ -37,6 +43,14 @@ public class RandomQuoteActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_random_quote);
 
+        FloatingActionButton buttonAddQuote = findViewById(R.id.button_add_quote);
+        buttonAddQuote.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(RandomQuoteActivity.this, AddQuoteActivity.class);
+                startActivityForResult(intent, ADD_QUOTE_REQUEST);
+            }
+        });
 
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -61,6 +75,22 @@ public class RandomQuoteActivity extends AppCompatActivity {
         parseQuoteJSON();
 
         Log.i(getClass().getName(), "parsequotejson() lewat");
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == RESULT_OK && requestCode == ADD_QUOTE_REQUEST) {
+            String quote = data.getStringExtra(AddQuoteActivity.EXTRA_QUOTE);
+
+            quoteViewModel.insert(new Quote(quote));
+
+            Toast.makeText(this, "Quote added", Toast.LENGTH_SHORT).show();
+
+        } else {
+            Toast.makeText(this, "Add quote cancelled", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void parseQuoteJSON() {
