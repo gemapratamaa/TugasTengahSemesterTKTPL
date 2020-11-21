@@ -16,6 +16,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,6 +38,7 @@ public class RandomQuoteActivity extends AppCompatActivity {
     private TextView myTextViewResult;
     private RequestQueue quoteRequestQueue;
     private QuoteViewModel quoteViewModel;
+    private Button fetchAgainButton;
 
     public static final int ADD_QUOTE_REQUEST = 1;
     public static final int EDIT_QUOTE_REQUEST = 2;
@@ -46,6 +48,15 @@ public class RandomQuoteActivity extends AppCompatActivity {
         Log.i(getClass().getName(), "masuk oncreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_random_quote);
+
+        fetchAgainButton = findViewById(R.id.fetch_again_button);
+
+        fetchAgainButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                parseQuoteJSON();
+            }
+        })
 
         FloatingActionButton buttonAddQuote = findViewById(R.id.button_add_quote);
         buttonAddQuote.setOnClickListener(new View.OnClickListener() {
@@ -66,7 +77,7 @@ public class RandomQuoteActivity extends AppCompatActivity {
         quoteViewModel.getAllQuotes().observe(this, new Observer<List<Quote>>() {
             @Override
             public void onChanged(List<Quote> quotes) {
-                Toast.makeText(RandomQuoteActivity.this, "onChanged", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(RandomQuoteActivity.this, "onChanged", Toast.LENGTH_SHORT).show();
                 adapter.setQuotes(quotes);
             }
         });
@@ -149,8 +160,9 @@ public class RandomQuoteActivity extends AppCompatActivity {
                             String quote = jsonObject.getString("quote");
                             Log.i("array", jsonObject.toString());
                             Log.i(getClass().getName(), "quote: " + quote);
-                            myTextViewResult.setText("");
-                            myTextViewResult.append(quote);
+                            //#myTextViewResult.setText("");
+                            //myTextViewResult.append(quote);
+                            quoteViewModel.insert(new Quote(quote));
 
                         } catch (JSONException e) {
                             e.printStackTrace();

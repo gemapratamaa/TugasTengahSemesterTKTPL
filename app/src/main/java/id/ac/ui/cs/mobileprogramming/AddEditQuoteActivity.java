@@ -59,7 +59,7 @@ public class AddEditQuoteActivity extends AppCompatActivity {
         String quote = editTextQuote.getText().toString();
 
         if (quote.trim().equals("")) {
-            Toast.makeText(this, "Please insert a quote", Toast.LENGTH_SHORT);
+            Toast.makeText(this, "Quote cannot be empty", Toast.LENGTH_SHORT);
             return;
         }
 
