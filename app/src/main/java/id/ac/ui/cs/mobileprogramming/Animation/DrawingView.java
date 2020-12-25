@@ -47,7 +47,7 @@ public class DrawingView extends View {
         drawPaint.setStrokeCap(Paint.Cap.ROUND);
         canvasPaint = new Paint(Paint.DITHER_FLAG);
 
-        icon = BitmapFactory.decodeResource(getResources(),   R.drawable.ic_launcher);
+        icon = BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher_foreground);
     }
 
     //size assigned to view
