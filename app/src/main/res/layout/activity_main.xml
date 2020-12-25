@@ -30,8 +30,6 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
 
-    <!--android:onClick="sendMessage"-->
-
 
     <Button
         android:id="@+id/button_random_cat_picture"
@@ -59,6 +57,17 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="428dp"
         android:text="@string/hourly_quote"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button_animation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sample animation"
+        tools:layout_editor_absoluteX="111dp"
+        tools:layout_editor_absoluteY="104dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

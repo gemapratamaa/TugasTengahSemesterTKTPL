@@ -29,10 +29,9 @@ public class MainActivity extends AppCompatActivity {
         createNotificationChannel();
         Button quoteButton = findViewById(R.id.button_random_quote);
         Button catButton = findViewById(R.id.button_random_cat_picture);
-
+        Button animationButton = findViewById(R.id.button_animation);
         Button reminder = findViewById(R.id.button_reminder);
         notificationManager = NotificationManagerCompat.from(this);
-
 
         reminder.setOnClickListener(v -> {
             int id = (int) System.currentTimeMillis();
@@ -53,22 +52,19 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        quoteButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, RandomQuoteActivity.class);
-                startActivity(intent);
-
-            }
+        quoteButton.setOnClickListener(view -> {
+            Intent intent = new Intent(MainActivity.this, RandomQuoteActivity.class);
+            startActivity(intent);
         });
-        catButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-                Intent intent = new Intent(MainActivity.this, RandomPictureActivity.class);
-                startActivity(intent);
+        catButton.setOnClickListener(view -> {
+            Intent intent = new Intent(MainActivity.this, RandomPictureActivity.class);
+            startActivity(intent);
+        });
 
-            }
+        animationButton.setOnClickListener(view -> {
+            Intent intent = new Intent(MainActivity.this, AnimationActivity.class);
+            startActivity(intent);
         });
 
     }

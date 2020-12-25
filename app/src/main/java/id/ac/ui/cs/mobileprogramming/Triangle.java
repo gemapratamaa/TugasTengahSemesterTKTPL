@@ -15,7 +15,7 @@ public class Triangle {
                     "attribute vec4 vPosition;" +
                     "void main() {" +
                     "   gl_position = uMVPMatrix * vPosition;" +
-                    "}"
+                    "}";
 }
 
 
