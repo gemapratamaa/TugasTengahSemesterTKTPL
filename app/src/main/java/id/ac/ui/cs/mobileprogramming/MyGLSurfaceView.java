@@ -3,6 +3,7 @@ package id.ac.ui.cs.mobileprogramming;
 import android.content.Context;
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.widget.TextView;
 
@@ -13,10 +14,11 @@ public class MyGLSurfaceView extends GLSurfaceView {
 
     //MyRenderer mr;
     TextView tv;
-    MainActivity maContext;
+    AnimationActivity aaContext;
+    //MainActivity maContext;
     public MyGLSurfaceView(Context context) {
         super(context);
-
+        aaContext = (AnimationActivity) context;
         setEGLContextClientVersion(2);
 
         setRenderer(new Renderer() {
@@ -28,7 +30,7 @@ public class MyGLSurfaceView extends GLSurfaceView {
 
             @Override
             public void onSurfaceCreated(GL10 gl, EGLConfig config) {
-                GLES20.glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+                GLES20.glClearColor(7.0f, 2.0f, 0.0f, 2.0f);
             }
 
             public void onSurfaceChanged(GL10 unused, int width, int height) {
@@ -42,10 +44,11 @@ public class MyGLSurfaceView extends GLSurfaceView {
     public boolean onTouchEvent(MotionEvent e) {
         final float x=e.getX();
         final float y=e.getY();
-
+        Log.i("GL Surface View","X="+x+" Y="+y);
+        aaContext.runOnUiThread(() -> aaContext.setTitle("X="+x+" Y="+y));
         return false;
 
     }
-
-
 }
+
+// https://www.codeproject.com/Articles/822412/Article-Beginners-Guide-to-Android-Animation-Gr-2
