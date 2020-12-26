@@ -5,7 +5,9 @@ import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -16,6 +18,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
@@ -29,9 +33,9 @@ public class MainActivity extends AppCompatActivity {
         createNotificationChannel();
         Button quoteButton = findViewById(R.id.button_random_quote);
         Button catButton = findViewById(R.id.button_random_cat_picture);
-
         Button reminder = findViewById(R.id.button_reminder);
         notificationManager = NotificationManagerCompat.from(this);
+
 
 
         reminder.setOnClickListener(v -> {
@@ -53,24 +57,25 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        quoteButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, RandomQuoteActivity.class);
-                startActivity(intent);
+        quoteButton.setOnClickListener(view -> {
+            Intent intent = new Intent(MainActivity.this, RandomQuoteActivity.class);
+            startActivity(intent);
 
-            }
         });
-        catButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Intent intent = new Intent(MainActivity.this, RandomPictureActivity.class);
-                startActivity(intent);
-
-            }
+        catButton.setOnClickListener(view -> {
+            Intent intent = new Intent(MainActivity.this, RandomPictureActivity.class);
+            startActivity(intent);
         });
 
+        if (!isConnectedToInternet()) {
+            quoteButton.setVisibility(View.GONE);
+            catButton.setVisibility(View.GONE);
+        }
+    }
+
+    private boolean isConnectedToInternet() {
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnected();
     }
 
     private void createNotificationChannel() {
