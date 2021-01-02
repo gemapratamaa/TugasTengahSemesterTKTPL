@@ -8,6 +8,7 @@ import android.location.LocationManager;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 public class GPSTracker implements LocationListener {
@@ -15,17 +16,25 @@ public class GPSTracker implements LocationListener {
     Context context;
 
     public GPSTracker(Context context) {
-        context = context;
+        this.context = context;
     }
 
     public Location getLocation() {
 
+        /*
         if (ContextCompat.checkSelfPermission(context, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             Toast.makeText(context, "Permission not granted", Toast.LENGTH_SHORT).show();
             return null;
         }
-        LocationManager lm = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
 
+         */
+
+        if (ContextCompat.checkSelfPermission(this.context, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            Toast.makeText(context, "Permission not granted", Toast.LENGTH_SHORT).show();
+            return null;
+        }
+
+        LocationManager lm = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
         boolean isGPSEnabled = lm.isProviderEnabled(LocationManager.GPS_PROVIDER);
 
         if (isGPSEnabled) {
@@ -34,7 +43,8 @@ public class GPSTracker implements LocationListener {
             return l;
         } else {
             // keknya yg permission di sini
-            Toast.makeText(context, "Please enable GPS", Toast.LENGTH_LONG).show();
+            String info = "This app needs a permission to turn on GPS to give you a latitude and longitude of your current location.";
+            Toast.makeText(context, info, Toast.LENGTH_LONG).show();
         }
 
         return null;

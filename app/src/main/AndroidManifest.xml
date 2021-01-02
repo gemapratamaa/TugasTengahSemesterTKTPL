@@ -27,7 +27,8 @@
         <activity android:name=".OpenGLES20Activity"
             android:launchMode="singleTop"/>
 
-
+        <activity android:name=".LocationActivity"
+            android:launchMode="singleTop"/>
 
         <activity android:name=".RandomPictureActivity" />
         <activity android:name=".SplashScreenActivity">

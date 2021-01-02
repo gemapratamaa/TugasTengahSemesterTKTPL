@@ -5,6 +5,7 @@ import android.opengl.GLSurfaceView;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 // Referensi: https://github.com/JimSeker/opengl/blob/master/HelloOpenGLES20/app/src/main/java/com/example/android/opengl/OpenGLES20Activity.java
 
@@ -20,6 +21,7 @@ public class OpenGLES20Activity extends Activity {
         // as the ContentView for this Activity
         mGLView = new MyGLSurfaceView(this);
         setContentView(mGLView);
+        Toast.makeText(this, "You can drag these shapes to animate them!", Toast.LENGTH_LONG);
     }
 
     @Override
