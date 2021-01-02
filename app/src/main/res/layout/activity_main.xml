@@ -17,9 +17,9 @@
         android:layout_height="36dp"
         android:layout_marginStart="60dp"
         android:layout_marginTop="520dp"
+        android:text=""
         android:textColor="@android:color/black"
         android:textSize="20sp"
-        android:text=""
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -65,5 +65,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button_animation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="38dp"
+        android:layout_marginBottom="1dp"
+        android:text="Animation"
+        app:layout_constraintBottom_toTopOf="@+id/bubble_speech"
+        app:layout_constraintEnd_toEndOf="@+id/bubble_speech" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

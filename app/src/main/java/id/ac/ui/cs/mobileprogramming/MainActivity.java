@@ -37,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
         Button quoteButton = findViewById(R.id.button_random_quote);
         Button catButton = findViewById(R.id.button_random_cat_picture);
         Button reminder = findViewById(R.id.button_reminder);
+        Button animationButton = findViewById(R.id.button_animation);
+
         TextView noConnectionText = findViewById(R.id.no_connection_text);
         notificationManager = NotificationManagerCompat.from(this);
 
@@ -66,6 +68,11 @@ public class MainActivity extends AppCompatActivity {
         
         catButton.setOnClickListener(view -> {
             Intent intent = new Intent(MainActivity.this, RandomPictureActivity.class);
+            startActivity(intent);
+        });
+
+        animationButton.setOnClickListener(view -> {
+            Intent intent = new Intent(MainActivity.this, OpenGLES20Activity.class);
             startActivity(intent);
         });
 
