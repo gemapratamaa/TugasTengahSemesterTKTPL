@@ -8,6 +8,8 @@ import android.view.MotionEvent;
 
 import javax.microedition.khronos.opengles.GL10;
 
+// Referensi: https://github.com/JimSeker/opengl/blob/master/HelloOpenGLES20/app/src/main/java/com/example/android/opengl/MyGLSurfaceView.java
+
 public class MyGLSurfaceView extends GLSurfaceView {
 
     private final MyGLRenderer mRenderer;

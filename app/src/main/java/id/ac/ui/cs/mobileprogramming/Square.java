@@ -7,6 +7,7 @@ import java.nio.ShortBuffer;
 
 import android.opengl.GLES20;
 
+// Referensi: https://github.com/JimSeker/opengl/blob/master/HelloOpenGLES20/app/src/main/java/com/example/android/opengl/Square.java
 public class Square {
 
     private final String vertexShaderCode =

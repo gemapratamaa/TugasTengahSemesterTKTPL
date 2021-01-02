@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, 8)
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "onstop notif")
                 .setSmallIcon(R.drawable.bubblespeech)
                 .setContentTitle("Notice")
                 .setContentText("You have put the app to the background")

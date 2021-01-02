@@ -16,6 +16,8 @@ import android.opengl.GLSurfaceView;
 import android.opengl.Matrix;
 import android.util.Log;
 
+// Referensi: https://github.com/JimSeker/opengl/blob/master/HelloOpenGLES20/app/src/main/java/com/example/android/opengl/MyGLRenderer.java
+
 /**
  * Provides drawing instructions for a GLSurfaceView object. This class
  * must override the OpenGL ES drawing lifecycle methods:

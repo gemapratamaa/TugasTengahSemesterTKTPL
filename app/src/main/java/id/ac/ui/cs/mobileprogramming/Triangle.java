@@ -6,6 +6,8 @@ import java.nio.FloatBuffer;
 
 import android.opengl.GLES20;
 
+// Referensi: https://github.com/JimSeker/opengl/blob/master/HelloOpenGLES20/app/src/main/java/com/example/android/opengl/Triangle.java
+
 public class Triangle {
 
     private final String vertexShaderCode =

@@ -6,6 +6,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 
+// Referensi: https://github.com/JimSeker/opengl/blob/master/HelloOpenGLES20/app/src/main/java/com/example/android/opengl/OpenGLES20Activity.java
+
 public class OpenGLES20Activity extends Activity {
 
     private GLSurfaceView mGLView;
