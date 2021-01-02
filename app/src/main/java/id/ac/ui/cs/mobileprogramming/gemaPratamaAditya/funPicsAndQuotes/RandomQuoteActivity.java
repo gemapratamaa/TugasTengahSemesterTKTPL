@@ -1,4 +1,4 @@
-package id.ac.ui.cs.mobileprogramming;
+package id.ac.ui.cs.mobileprogramming.gemaPratamaAditya.funPicsAndQuotes;
 
 import android.content.Intent;
 import android.os.Bundle;

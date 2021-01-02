@@ -1,4 +1,4 @@
-package id.ac.ui.cs.mobileprogramming;
+package id.ac.ui.cs.mobileprogramming.gemaPratamaAditya.funPicsAndQuotes;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;

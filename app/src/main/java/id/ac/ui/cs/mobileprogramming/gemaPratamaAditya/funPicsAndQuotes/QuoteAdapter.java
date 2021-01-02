@@ -1,4 +1,4 @@
-package id.ac.ui.cs.mobileprogramming;
+package id.ac.ui.cs.mobileprogramming.gemaPratamaAditya.funPicsAndQuotes;
 
 import android.view.LayoutInflater;
 import android.view.View;

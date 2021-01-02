@@ -1,4 +1,4 @@
-package id.ac.ui.cs.mobileprogramming;
+package id.ac.ui.cs.mobileprogramming.gemaPratamaAditya.funPicsAndQuotes;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;

@@ -1,4 +1,4 @@
-package id.ac.ui.cs.mobileprogramming;
+package id.ac.ui.cs.mobileprogramming.gemaPratamaAditya.funPicsAndQuotes;
 
 import android.app.Activity;
 import android.opengl.GLSurfaceView;

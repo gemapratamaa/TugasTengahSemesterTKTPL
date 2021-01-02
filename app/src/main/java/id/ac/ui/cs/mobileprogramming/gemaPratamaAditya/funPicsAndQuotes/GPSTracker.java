@@ -1,4 +1,4 @@
-package id.ac.ui.cs.mobileprogramming;
+package id.ac.ui.cs.mobileprogramming.gemaPratamaAditya.funPicsAndQuotes;
 
 import android.content.Context;
 import android.content.pm.PackageManager;
@@ -20,14 +20,6 @@ public class GPSTracker implements LocationListener {
     }
 
     public Location getLocation() {
-
-        /*
-        if (ContextCompat.checkSelfPermission(context, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            Toast.makeText(context, "Permission not granted", Toast.LENGTH_SHORT).show();
-            return null;
-        }
-
-         */
 
         if (ContextCompat.checkSelfPermission(this.context, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             Toast.makeText(context, "Permission not granted", Toast.LENGTH_SHORT).show();

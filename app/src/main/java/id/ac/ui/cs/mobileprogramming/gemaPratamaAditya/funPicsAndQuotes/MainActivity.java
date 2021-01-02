@@ -1,5 +1,4 @@
-package id.ac.ui.cs.mobileprogramming;
-
+package id.ac.ui.cs.mobileprogramming.gemaPratamaAditya.funPicsAndQuotes;
 import android.app.AlarmManager;
 import android.app.Notification;
 import android.app.NotificationChannel;

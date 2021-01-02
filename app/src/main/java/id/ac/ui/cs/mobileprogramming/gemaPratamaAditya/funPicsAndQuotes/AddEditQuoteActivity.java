@@ -1,5 +1,4 @@
-package id.ac.ui.cs.mobileprogramming;
-
+package id.ac.ui.cs.mobileprogramming.gemaPratamaAditya.funPicsAndQuotes;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
