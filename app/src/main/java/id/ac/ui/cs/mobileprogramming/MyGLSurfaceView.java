@@ -4,40 +4,67 @@ import android.content.Context;
 import android.opengl.GLSurfaceView;
 import android.opengl.GLES20;
 import android.opengl.Matrix;
+import android.view.MotionEvent;
 
 import javax.microedition.khronos.opengles.GL10;
 
-class MyGLSurfaceView extends GLSurfaceView {
+public class MyGLSurfaceView extends GLSurfaceView {
 
-    private final MyGLRenderer renderer;
-    private final float[] vPMatrix = new float[16];
-    private final float[] projectionMatrix = new float[16];
-    private final float[] viewMatrix = new float[16];
+    private final MyGLRenderer mRenderer;
 
     public MyGLSurfaceView(Context context) {
         super(context);
 
-        // Create an OpenGL ES 2.0 context
+        // Create an OpenGL ES 2.0 context.
         setEGLContextClientVersion(2);
-
-        renderer = new MyGLRenderer();
-
+        //fix for error No Config chosen, but I don't know what this does.
+        super.setEGLConfigChooser(8 , 8, 8, 8, 16, 0);
         // Set the Renderer for drawing on the GLSurfaceView
-        setRenderer(renderer);
+        mRenderer = new MyGLRenderer();
+        setRenderer(mRenderer);
+
+        // Render the view only when there is a change in the drawing data
         setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
     }
 
-    /*
+    private final float TOUCH_SCALE_FACTOR = 180.0f / 320;
+    private float mPreviousX;
+    private float mPreviousY;
+
     @Override
-    public void onSurfaceChanged(GL10 unused, int width, int height) {
-        GLES20.glViewport(0, 0, width, height);
+    public boolean onTouchEvent(MotionEvent e) {
+        // MotionEvent reports input details from the touch screen
+        // and other input controls. In this case, you are only
+        // interested in events where the touch position changed.
 
-        float ratio = (float) width / height;
+        float x = e.getX();
+        float y = e.getY();
 
-        // this projection matrix is applied to object coordinates
-        // in the onDrawFrame() method
-        Matrix.frustumM(projectionMatrix, 0, -ratio, ratio, -1, 1, 3, 7);
+        switch (e.getAction()) {
+            case MotionEvent.ACTION_MOVE:
+
+                float dx = x - mPreviousX;
+                float dy = y - mPreviousY;
+
+                // reverse direction of rotation above the mid-line
+                if (y > getHeight() / 2) {
+                    dx = dx * -1 ;
+                }
+
+                // reverse direction of rotation to left of the mid-line
+                if (x < getWidth() / 2) {
+                    dy = dy * -1 ;
+                }
+
+                mRenderer.setAngle(
+                        mRenderer.getAngle() +
+                                ((dx + dy) * TOUCH_SCALE_FACTOR));  // = 180.0f / 320
+                requestRender();
+        }
+
+        mPreviousX = x;
+        mPreviousY = y;
+        return true;
     }
 
-     */
 }
