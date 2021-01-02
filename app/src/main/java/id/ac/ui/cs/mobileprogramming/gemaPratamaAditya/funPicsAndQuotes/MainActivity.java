@@ -27,19 +27,27 @@ public class MainActivity extends AppCompatActivity {
     private NotificationManagerCompat notificationManager;
     int notificationId = 1;
 
+    static {
+        System.loadLibrary("native-lib");
+    }
+
+    public static native String introTextFromJNI();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         createNotificationChannel();
+        TextView introText = findViewById(R.id.intro_text);
+        TextView noConnectionText = findViewById(R.id.no_connection_text);
         Button quoteButton = findViewById(R.id.button_random_quote);
         Button catButton = findViewById(R.id.button_random_cat_picture);
         Button reminder = findViewById(R.id.button_reminder);
         Button animationButton = findViewById(R.id.button_animation);
         Button locationButton = findViewById(R.id.button_location);
 
-        TextView noConnectionText = findViewById(R.id.no_connection_text);
+        introText.setText(introTextFromJNI());
         notificationManager = NotificationManagerCompat.from(this);
 
 
@@ -50,8 +58,6 @@ public class MainActivity extends AppCompatActivity {
             PendingIntent pendingIntent = PendingIntent.getBroadcast(MainActivity.this,id, intent,0);
             AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
 
-            //long timeAtButtonClick = System.currentTimeMillis();
-            //long fiveSeconds = 10 * 1000;
             long oneHour = 3600 * 1000;
 
             alarmManager.setRepeating(AlarmManager.RTC, Calendar.getInstance().getTimeInMillis(),
@@ -127,25 +133,5 @@ public class MainActivity extends AppCompatActivity {
             notificationManager.createNotificationChannel(channel);
         }
     }
-
-
-
-    /*
-    private void createNotificationChannel(String notifName) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            CharSequence name = notifName;
-            String description = notifName;
-            int importance = NotificationManager.IMPORTANCE_HIGH;
-
-            NotificationChannel channel = new NotificationChannel("backgroundNotif", name, importance);
-            channel.setDescription(description);
-
-            NotificationManager notificationManager = getSystemService(NotificationManager.class);
-            assert notificationManager != null;
-            notificationManager.createNotificationChannel(channel);
-        }
-    }
-
-     */
 
 }
