@@ -62,8 +62,8 @@ public class MainActivity extends AppCompatActivity {
         quoteButton.setOnClickListener(view -> {
             Intent intent = new Intent(MainActivity.this, RandomQuoteActivity.class);
             startActivity(intent);
-
         });
+        
         catButton.setOnClickListener(view -> {
             Intent intent = new Intent(MainActivity.this, RandomPictureActivity.class);
             startActivity(intent);
@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
             quoteButton.setVisibility(View.GONE);
             catButton.setVisibility(View.GONE);
             noConnectionText.setText("Not connected to internet! Please connect to the internet and " +
-                            "try again.");
+                            "restart the app.");
         }
     }
 
@@ -88,8 +88,7 @@ public class MainActivity extends AppCompatActivity {
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT);
 
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
-
-        // notificationId is a unique int for each notification that you must define
+        
 
         notificationManager.notify(notificationId, builder.build());
         notificationId++;
