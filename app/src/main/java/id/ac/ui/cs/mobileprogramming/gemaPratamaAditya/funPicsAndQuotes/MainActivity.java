@@ -27,11 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private NotificationManagerCompat notificationManager;
     int notificationId = 1;
 
-    static {
-        System.loadLibrary("native-lib");
-    }
-
-    public static native String introTextFromJNI();
+    //public static native String introTextFromJNI();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         Button animationButton = findViewById(R.id.button_animation);
         Button locationButton = findViewById(R.id.button_location);
 
-        introText.setText(introTextFromJNI());
+        //introText.setText(introTextFromJNI());
         notificationManager = NotificationManagerCompat.from(this);
 
 
