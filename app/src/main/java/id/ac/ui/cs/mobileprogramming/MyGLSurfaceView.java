@@ -14,7 +14,7 @@ class MyGLSurfaceView extends GLSurfaceView {
     private final float[] projectionMatrix = new float[16];
     private final float[] viewMatrix = new float[16];
 
-    public MyGLSurfaceView(Context context){
+    public MyGLSurfaceView(Context context) {
         super(context);
 
         // Create an OpenGL ES 2.0 context
